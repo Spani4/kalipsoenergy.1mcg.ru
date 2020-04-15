@@ -1,0 +1,30 @@
+header.header
+    .header__wrapper.wrapper
+
+        .header__caption
+            h1.header__title калипсо
+            div Свет в каждый дом
+
+        .header__contacts
+            .header__contacts-item
+                .header__contacts-icon
+                    +icon("phone")
+                .header__contacts-data
+                    a.header__contacts-link(href="#tel:+78182242717") (8182) 24-27-17
+                    a.header__contacts-link(href="#tel:+78182241071") (8182) 24-10-71
+            .header__contacts-item
+                .header__contacts-icon
+                    +icon("marker")
+                .header__contacts-data
+                    div 163045, г. Архангельск, пр. Троицкий д.157, корпус 1
+                
+            .header__contacts-item
+                .header__contacts-icon
+                    +icon("email")
+                .header__contacts-data
+                    a.header__contacts-link(href="mailto:kalipso29@yandex.ru") kalipso29@yandex.ru
+
+        .header__search
+            input.header__search-input(type="search")
+            .header__search-icon
+                +icon("search")

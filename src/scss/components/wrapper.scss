@@ -2,10 +2,13 @@
 
     $wrapper-width: $max-width;
 
-    width: $wrapper-width;
+    max-width: $wrapper-width;
     margin: 0 auto;
 
-    @include screen(1199) {
-        width: 100%;
+    @media (max-width: 1199px) {
+        max-width: 950px;
+    }
+    @media (max-width: 991px) {
+        max-width: 900px;
     }
 }

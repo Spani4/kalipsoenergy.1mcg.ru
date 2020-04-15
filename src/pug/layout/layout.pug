@@ -7,11 +7,15 @@ html(lang="ru")
         title Page Title
         
     body
-        //- include ../modules/header.pug
+        include ../mixins/mixins.pug
+
+        include ../modules/header.pug
+        include ../modules/nav.pug
         //- include ../modules/header-mobile.pug
         
         block content
-        //- include ../modules/footer.pug
+        
+        include ../modules/footer.pug
 
         //- include ../modules/modals.pug
 

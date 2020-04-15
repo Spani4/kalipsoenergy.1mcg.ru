@@ -1,4 +1,98 @@
 .header {
 
+    height: 90px;
+    padding-top: 20px;
+    border-bottom: 1px solid $color2;
+    color: $font-color-alt;
+    background-color: $bg-color-alt;
+
+    &__wrapper {
+        @include flex(row,sb,fs);
+    }
+
+    &__caption {
+        margin-right: 40px;
+        font-weight: 300;
+        white-space: nowrap;
+    }
+    
+    &__title {
+        font-size: 24px;
+        font-family: $sans-title;
+        text-transform: uppercase;
+    }
+
+    &__contacts {
+        @include flex(row, fe);
+        flex-grow: 1;
+
+        &-item {
+            @include flex(row);
+            max-width: 270px;
+
+            &:not(:last-child) {
+                padding-right: 40px;
+
+                @include screen(1199) {    
+                    &:not(:last-child) {
+                        padding-right: 25px;
+                    }
+                }
+            }
+
+        }
+
+        &-data {
+            padding-left: 8px;
+            line-height: 150%;
+        }
+
+        &-link {
+            @include transition(opacity);
+            display: block;
+            padding-bottom: 10px;
+            white-space: nowrap;
+
+            &:hover {
+                opacity: .75;
+            }
+        }
+    }
+
+    &__search {
+        position: relative;
+        margin-left: 60px;
+
+        @include screen(1199) {
+            margin-left: 25px;
+        }
+
+        &-icon {
+            @extend %centered;
+            position: absolute;
+            height: 100%;
+            top: 0;
+            right: 0;
+            padding-right: 8px;
+
+            .icon {
+                fill: $bg-color-alt;
+            }
+        }
+
+        &-input {
+            width: 200px;
+            height: 40px;
+            padding-right: 20px;
+            padding-left: 20px;
+            border: none;
+            border-radius: 15px;
+    
+            &:focus {
+                border: 2px solid $color8;
+                outline: none;
+            }
+        }
+    }
 
 }

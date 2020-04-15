@@ -10,18 +10,19 @@ body {
     position: relative;
     min-height: 100vh;
     // top: 0 !important;
-    color: $main-font-color;
-
+    color: $font-color-black;
+    font-size: 14px;
 }
 
 main {
     flex-grow: 1;
-    // background-color: $bg-color;
-    
+    background-color: $bg-color;
 }
 
 .icon {
-    fill: transparent;
-    stroke: $main-font-color;
+    fill: $font-color-alt;
+    stroke: transparent;
+    width: 25px;
+    height: 25px;
 }
 

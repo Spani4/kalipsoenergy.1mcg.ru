@@ -19,14 +19,14 @@ module.exports = merge(common, {
             errors  : true
         },
         open: "Chrome",
-        // proxy: [
-        //     {
-        //         context: ['/api', '/data'],
-        //         target: "https://ss.1mcg.ru",
-        //         changeOrigin: true,
-        //         withCredentials: true,
-        //     },
-        // ],
+        proxy: [
+            {
+                context: ['/api', '/data'],
+                target: "https://kalipsoenergy.1mcg.ru",
+                changeOrigin: true,
+                withCredentials: true,
+            },
+        ],
 
     },
     plugins    : [
