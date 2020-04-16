@@ -2,7 +2,8 @@ header.header
     .header__wrapper.wrapper
 
         .header__caption
-            h1.header__title калипсо
+            a(href="/")
+                h1.header__title калипсо
             div Свет в каждый дом
 
         .header__contacts
@@ -24,7 +25,17 @@ header.header
                 .header__contacts-data
                     a.header__contacts-link(href="mailto:kalipso29@yandex.ru") kalipso29@yandex.ru
 
+        .header__personal-area-btn
+            button.personal-area-btn(type="button") личный кабинет
+
         .header__search
             input.header__search-input(type="search")
             .header__search-icon
                 +icon("search")
+
+        .header__burger.js-burger
+            .header__burger-elem
+            .header__burger-elem
+            .header__burger-elem
+            .header__burger-elem
+        

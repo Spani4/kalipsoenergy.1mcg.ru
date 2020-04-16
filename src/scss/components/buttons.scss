@@ -11,6 +11,13 @@
     }
 }
 
+.personal-area-btn {
+    @extend .nav__link;
+    background-color: transparent;
+    border: none;
+
+}
+
 .icon-btn {
     @extend %centered;
     
