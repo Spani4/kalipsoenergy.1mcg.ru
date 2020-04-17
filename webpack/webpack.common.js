@@ -43,9 +43,9 @@ module.exports = {
     },
     plugins     : [
         new CleanWebpackPlugin(),
-        /* new CopyWebpackPlugin([
-            {from: 'src/images', to: IMG_PATH}
-        ]), */
+        new CopyWebpackPlugin([
+            {from: 'src/images/raw', to: IMG_PATH}
+        ]), 
         new SpriteLoaderPlugin({
             plainSprite: true,
         }),
@@ -105,13 +105,13 @@ module.exports = {
                         options: {
                             mozjpeg: {
                                 progressive: true,
-                                quality    : 70
+                                quality    : 80
                             },
                             optipng: {
                                 enabled: true
                             },
                             pngquant: {
-                                quality: [0.7, 0.7],
+                                quality: [0.8, 0.8],
                                 speed: 4
                             },
                             gifsicle: {

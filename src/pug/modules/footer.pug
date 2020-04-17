@@ -1,1 +1,42 @@
-footer.footer footer
+footer.footer
+    .footer__wrapper.wrapper
+        nav.footer-nav
+            a.footer-nav__link(href="#") услуги
+            a.footer-nav__link(href="#") клиентам
+            a.footer-nav__link(href="#") о компании
+            a.footer-nav__link(href="#") обратная связь
+            a.footer-nav__link(href="#") партнеры
+            a.footer-nav__link(href="#") контакты
+            a.footer-nav__link(href="#") информация
+            .footer-nav__personal-area-btn
+                button.personal-area-btn.js-personal-area-btn(type="button") личный кабинет
+        
+        .footer__content
+            .footer__caption
+                a(href="/")
+                    h2.footer__title калипсо
+                div Свет в каждый дом
+
+            .footer__contacts
+                .footer__contacts-item
+                    .footer__contacts-icon
+                        +icon("phone")
+                    .footer__contacts-data
+                        a.footer__contacts-link(href="#tel:+78182242717") (8182) 24-27-17
+                        a.footer__contacts-link(href="#tel:+78182241071") (8182) 24-10-71
+                .footer__contacts-item
+                    .footer__contacts-icon
+                        +icon("marker")
+                    .footer__contacts-data
+                        div 163045, г. Архангельск, пр. Троицкий д.157, корпус 1
+                    
+                .footer__contacts-item
+                    .footer__contacts-icon
+                        +icon("email")
+                    .footer__contacts-data
+                        a.footer__contacts-link(href="mailto:kalipso29@yandex.ru") kalipso29@yandex.ru
+                        a.footer__contacts-link(href="mailto:kalipso29@yandex.ru") kalipso29@yandex.ru
+
+        .footer__map#map
+        //- .footer__map#map(data-bg=`url('/images/map.jpg')`)
+

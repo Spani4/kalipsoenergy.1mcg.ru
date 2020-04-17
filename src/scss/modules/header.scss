@@ -72,36 +72,11 @@
         @include screen(1199) {
             margin-left: 25px;
         }
-
-        &-icon {
-            @extend %centered;
-            position: absolute;
-            height: 100%;
-            top: 0;
-            right: 0;
-            padding-right: 8px;
-
-            .icon {
-                fill: $bg-color-alt;
-            }
+        @include screen(768) {
+            align-self: center;
         }
-
-        &-input {
-            width: 200px;
-            height: 40px;
-            padding-right: 20px;
-            padding-left: 20px;
-            border: none;
-            border-radius: 15px;
-    
-            &:focus {
-                border: 2px solid $color8;
-                outline: none;
-            }
-
-            @include screen(991) {
-                width: 250px;
-            }
+        @include screen(585) {
+            display: none;
         }
     }
 
@@ -121,8 +96,16 @@
         align-self: center;
         display: none;
         width: 30px;
-        // height: 30px;
-        // padding: 6px 3px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: -5px;
+            right: -5px;
+            top: -15px;
+            bottom: -15px;
+            z-index: 10;
+        }
 
         @include screen(768) {
             @include flex(col,c);

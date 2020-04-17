@@ -1,0 +1,36 @@
+.footer-nav {
+
+    @include flex(row,sb,c);
+    width: 100%;
+    margin-bottom: 40px;
+
+    @include screen(768) {
+        display: none;
+    }
+
+    &__link {
+        @include transition(color);
+        font-family: $sans-title;
+        font-size: 14px;
+        text-align: right;
+        text-transform: uppercase;
+        white-space: nowrap;
+        color: $font-color-alt;
+        cursor: pointer;
+
+        &:hover {
+            color: $font-color-bright;
+        }
+
+        &:active {
+            opacity: .8;
+        }
+    }
+
+    &__personal-area-btn {
+
+        @include screen(991) {
+            display: none;
+        }
+    }
+}

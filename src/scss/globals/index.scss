@@ -5,6 +5,16 @@
     "extensions",
     "reset";
 
+//global components and modules
+@import "modules/header";
+@import "modules/nav";
+@import "modules/footer";
+@import "modules/footer-nav";
+
+@import "../components/search-input";
+@import "../components/buttons";
+@import "../components/wrapper";
+
 body {
     @include flex(col);
     position: relative;

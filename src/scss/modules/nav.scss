@@ -29,12 +29,23 @@
         }
     }
 
+    &__search {
+        display: none;
+        position: relative;
+
+        @include screen(585) {
+            display: block;
+            margin-top: 20px;
+        }
+    }
+    
     &__personal-area-btn {
         @include screen(991) {
             display: none;
         }
         @include screen(768) {
             display: block;
+            width: 100%;
         }
     }
 

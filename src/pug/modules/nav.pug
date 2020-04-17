@@ -5,7 +5,12 @@ nav.nav.js-nav
         a.nav__link(href="#") о компании
         a.nav__link(href="#") обратная связь
         a.nav__link(href="#") партнеры
-        a.nav__link(href="#") кантакты
+        a.nav__link(href="#") контакты
         a.nav__link(href="#") информация
         .nav__personal-area-btn
-            button.personal-area-btn(type="button") личный кабинет
+            button.personal-area-btn.js-personal-area-btn(type="button") личный кабинет
+
+        .nav__search
+            input.search-input(type="search")
+            .search-input-icon
+                +icon("search")            
