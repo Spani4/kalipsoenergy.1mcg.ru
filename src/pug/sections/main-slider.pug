@@ -1,0 +1,23 @@
+section.section.main-slider.js-main-slider
+    .swiper-container
+        .main-slider__pagination
+            .swiper-pagination
+        .swiper-wrapper
+            - var slides = [1,2,3,4,5,6,7]
+            each slide in slides
+                .main-slider__slide.swiper-slide.swiper-lazy(data-background=require('../../images/main-slider-img.jpg'))
+                    .main-slider__wrapper.wrapper
+                        .swiper-lazy-preloader
+                            +icon("spinner")
+                        button.main-slider__slider-btn.slider-btn.light.prev.js-prev-btn
+                        button.main-slider__slider-btn.slider-btn.light.next.js-next-btn
+                        .main-slider__counter #{slide}/#{slides.length}
+
+
+                        .main-slider__content
+                            h3.main-slider__title Быстро, качественно и не дорого выполним электромонтажные работы любой сложности
+                            .main-slider__text Оставьте заявку и в течении 5 минут с вами свяжется наш менеджер
+                            button.main-slider__btn.button Оставить заявку
+                            
+
+

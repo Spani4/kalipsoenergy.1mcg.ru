@@ -12,24 +12,30 @@ $max-width: 1180px;
 
 //COLORS
 $color1: #fff;
+
 $color2: #E0E0E0;
 $color3: #C4C4C4;
 $color4: #6A6A6A;
+
 $color5: #3A2700;
 $color6: #000;
 $color7: #3B4D6B;
 $color8: #FEC34C;
 
 
-$font-color-main: $color5;
+$font-color-main: $color6;
 $font-color-alt: $color1;
-$font-color-black: $color6;
+$font-color-dark: $color5;
 $font-color-bright: $color8;
 
 $bg-color: $color1;
 $bg-color-main: $bg-color;
 $bg-color-alt: $color7;
 $bg-color-bright: $color8;
+
+$grey-light: $color2;
+$grey-medium: $color3;
+$grey-dark: $color4;
 
 // sizes
 
