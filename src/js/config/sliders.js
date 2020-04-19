@@ -14,4 +14,22 @@ export default {
             clickable: true,
         }
     },
+
+    projects: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        navigation: {
+            nextEl: '.js-projects-slider .js-next-btn',
+            prevEl: '.js-projects-slider .js-prev-btn',
+            disabledClass: 'disabled',
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 2,
+            },
+            992: {
+                slidesPerView: 3,
+            }
+        }
+    },
 }

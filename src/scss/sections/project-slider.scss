@@ -1,0 +1,39 @@
+.projects-slider {
+
+    @extend %outer;
+
+    &__controls {
+        @include flex;
+        position: absolute;
+        right: 0;
+        bottom: 0px;
+    }
+
+    &__content {
+
+    }
+
+    &__slide.swiper-slide {
+        height: 255px;
+        background-color: $grey-light;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        @include screen(585) {
+            height: 210px;
+        }
+    }
+
+    &__slide-caption {
+        position: absolute;
+        bottom: 0;
+        padding: 10px;
+        font-size: 20px;
+        color: $font-color-alt;
+    }
+
+    // &-link {
+
+    // }
+}

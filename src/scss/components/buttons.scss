@@ -1,6 +1,7 @@
 .button {
     @include transition(all);
     
+    display: inline-block;
     width: 200px;
     height: 50px;
     border: none;
@@ -8,16 +9,15 @@
     line-height: 50px;
     text-align: center;
     font-family: $sans-title;
+    text-transform: uppercase;
     color: $font-color-dark;
     background-color: $bg-color-bright;
     cursor: pointer;
+    user-select: none;
 
-    &:hover {
-        color: $font-color-alt;
-    }
-    &:active {
-        opacity: .8;
-    }
+    &:hover { color: $font-color-alt; }
+    &:active { color: $font-color-dark; }
+
     &:disabled {
         background-color: $grey-medium;
         color: $grey-dark;

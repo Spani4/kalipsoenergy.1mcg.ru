@@ -14,6 +14,14 @@
     }
 
     &__title {
+        margin-bottom: 20px;
+        font-size: 18px;
+        font-family: $sans-title;
+        text-transform: uppercase;
+    }
+
+    &__link-details {
+        display: inline-block;
         font-size: 18px;
         font-family: $sans-title;
         text-transform: uppercase;

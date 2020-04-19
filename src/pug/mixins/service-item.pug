@@ -1,0 +1,6 @@
+mixin service-item(service, index)
+    .service-item
+        .service-item__header
+            h3.service-item__title= service
+        .service-item__image(data-bg=`url(${require('../../images/service-item-' + index + '.jpg')})`)
+            button.service-item__btn-details.button(href="#") подробнее

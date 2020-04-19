@@ -1,0 +1,19 @@
+section.section.projects-slider.js-projects-slider
+    .projects-slider__wrapper.wrapper
+        .section__header
+            h2.section__title наши проекты
+            .projects-slider__controls
+                .projects-slider__slider-btn.slider-btn.prev.js-prev-btn(aria-label="Назад")
+                .projects-slider__slider-btn.slider-btn.next.js-next-btn(aria-label="Вперед")
+        .projects-slider__content
+            .swiper-container
+                .swiper-wrapper
+
+                    each i in [1,2,3]
+                        .projects-slider__slide.swiper-slide(data-bg=`url(${require('../../images/projects-slider-image-' + i + '.jpg')})`)
+                            .projects-slider__slide-caption
+                                a.projects-slider__slide-link(href="#") Электромонтажные работы в частном доме
+                    each i in [1,2,3]
+                        .projects-slider__slide.swiper-slide(data-bg=`url(${require('../../images/projects-slider-image-' + i + '.jpg')})`)
+                            .projects-slider__slide-caption
+                                a.projects-slider__slide-link(href="#") Электромонтажные работы в частном доме

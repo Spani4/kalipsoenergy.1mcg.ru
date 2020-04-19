@@ -8,6 +8,10 @@
     color: $font-color-alt;
     background-color: $bg-color-alt;
 
+    @include screen(768) {
+        border-bottom: none;
+    }
+
     &__wrapper {
         @include flex(row,sb,fs);
     }

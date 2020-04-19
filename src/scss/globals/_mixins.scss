@@ -41,7 +41,13 @@
         align-items: $a;
     }
 
-    flex-wrap: $w;
+    @if $w == w {
+        flex-wrap: wrap;
+    } @else if $w == nw {
+        flex-wrap: nowrap;
+    } @else {
+        flex-wrap: $w;
+    }
 }
 
 @mixin screen($size) {

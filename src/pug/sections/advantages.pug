@@ -1,0 +1,20 @@
+- var advantages = [
+- 'Испытание сетей перед сдачей в эксплатацию',
+- 'Гарантия качества - 2 года',
+- 'Бесплатное обслуживание сетей в течении 3 лет',
+- 'Периодические проверки и ремонт сетей',
+- 'Подготовка всех необходимых документов',
+- 'Квалифицированный персонал с многолетним стажем работы'
+- ]
+
+section.section.advantages
+    .advantages__wrapper.wrapper
+        .section__header
+            h2.section__title наши преимущества
+        .advantages__content
+
+            each item, i in advantages
+                .advantages__item
+                    +bright-plate(item, i+1)
+        
+        a.section__link-details.advantages__link-details(href="#") подробнее

@@ -1,0 +1,41 @@
+@import "components/bright-plate";
+
+.advantages {
+    
+    @extend %outer;
+
+    &__content {
+        @include flex(row,fs,c,w);
+        margin: -20px -10px;
+    }
+
+    &__item {
+        width: calc(100%/3);
+        height: 150px;
+        padding: 20px 10px;
+
+        @include screen(1199) {
+            width: 50%;
+            padding: 10px;
+        }
+        @include screen(768) {
+            width: 100%;
+            display: none;
+
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(3) {
+                display: block;
+            }
+        }
+    }
+
+    &__link-details.section__link-details {
+        display: none;
+        margin-top: 20px;
+
+        @include screen(768) {
+            display: inline-block;
+        }
+    }
+}
