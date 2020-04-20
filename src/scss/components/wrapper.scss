@@ -1,12 +1,16 @@
 .wrapper {
 
-    $wrapper-width: $max-width;
-
+    $wrapper-width: 1200px;
+    
     max-width: $wrapper-width;
     margin: 0 auto;
+    padding-left: 10px;
+    padding-right: 10px;
 
     @media (max-width: 1199px) {
         max-width: 950px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
     @media (max-width: 991px) {
         max-width: 900px;

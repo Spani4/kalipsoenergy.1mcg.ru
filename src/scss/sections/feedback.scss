@@ -1,0 +1,17 @@
+@import "../components/form-elems.scss";
+
+.feedback {
+
+    &__form {
+
+        @include flex(col, fs, fe);
+
+        @include screen(767) {
+            align-items: flex-start;
+        }
+
+        & > * {  margin-bottom: 20px; }
+    }
+
+    .button { width: 160px; }
+}

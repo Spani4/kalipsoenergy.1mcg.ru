@@ -1,16 +1,10 @@
 .projects-slider {
 
-    @extend %outer;
-
     &__controls {
         @include flex;
         position: absolute;
         right: 0;
         bottom: 0px;
-    }
-
-    &__content {
-
     }
 
     &__slide.swiper-slide {
@@ -20,7 +14,7 @@
         background-size: cover;
         background-repeat: no-repeat;
 
-        @include screen(585) {
+        @include screen(575) {
             height: 210px;
         }
     }
@@ -32,8 +26,4 @@
         font-size: 20px;
         color: $font-color-alt;
     }
-
-    // &-link {
-
-    // }
 }

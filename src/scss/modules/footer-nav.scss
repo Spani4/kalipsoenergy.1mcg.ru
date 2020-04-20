@@ -4,7 +4,7 @@
     width: 100%;
     margin-bottom: 40px;
 
-    @include screen(768) {
+    @include screen(767) {
         display: none;
     }
 

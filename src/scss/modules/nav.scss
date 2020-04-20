@@ -1,7 +1,5 @@
 .nav {
 
-    @extend %outer;
-
     height: 90px;
     background-color: $bg-color-alt;
 
@@ -33,7 +31,7 @@
         display: none;
         position: relative;
 
-        @include screen(585) {
+        @include screen(575) {
             display: block;
             margin-top: 20px;
         }
@@ -43,7 +41,7 @@
         @include screen(991) {
             display: none;
         }
-        @include screen(768) {
+        @include screen(767) {
             display: block;
             width: 100%;
         }
@@ -51,7 +49,7 @@
 
     // MOBILE
 
-    @include screen(768) {
+    @include screen(767) {
         &:not(.active) {
             display: none;
             animation: fade-out .3s ease-out normal forwards;
@@ -67,6 +65,8 @@
         right: 0;
         top: 90px;
         z-index: 1000;
+        margin-bottom: 20px;
+        margin-right: 20px;
         background-color: transparent;
 
         

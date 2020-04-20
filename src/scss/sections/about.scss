@@ -1,0 +1,12 @@
+.about {
+
+    padding-right: 20px;
+
+    @include screen(767) {
+        padding-right: 0px;
+    }
+
+    &__content {
+        margin-bottom: 20px;
+    }
+}

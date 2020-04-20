@@ -1,0 +1,29 @@
+.section-group {
+
+    &__content {
+        @include flex();
+        margin: -10px;
+
+        @include screen(767) {
+            flex-wrap: wrap;
+        }
+
+    }
+
+    &__section {
+        padding: 10px;
+
+        &:nth-child(1) { width: calc(2*100%/3); }
+        &:nth-child(2) { width: calc(100%/3); }
+
+        &:nth-child(1),
+        &:nth-child(2) {
+            @include screen(991) {
+                width: 50%;
+            }
+            @include screen(767) {
+                width: 100%;
+            }
+        }
+    }
+}

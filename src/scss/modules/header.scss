@@ -1,14 +1,12 @@
 .header {
 
-    @extend %outer;
-
     height: 90px;
     padding-top: 20px;
     border-bottom: 1px solid $color2;
     color: $font-color-alt;
     background-color: $bg-color-alt;
 
-    @include screen(768) {
+    @include screen(767) {
         border-bottom: none;
     }
 
@@ -20,6 +18,10 @@
         margin-right: 40px;
         font-weight: 300;
         white-space: nowrap;
+
+        @include screen(1199) {    
+            margin-right: 25px;
+        }
     }
     
     &__title {
@@ -45,7 +47,7 @@
 
                 @include screen(1199) {    
                     &:not(:last-child) {
-                        padding-right: 25px;
+                        padding-right: 20px;
                     }
                 }
             }
@@ -76,10 +78,10 @@
         @include screen(1199) {
             margin-left: 25px;
         }
-        @include screen(768) {
+        @include screen(767) {
             align-self: center;
         }
-        @include screen(585) {
+        @include screen(575) {
             display: none;
         }
     }
@@ -111,7 +113,7 @@
             z-index: 10;
         }
 
-        @include screen(768) {
+        @include screen(767) {
             @include flex(col,c);
         }
 

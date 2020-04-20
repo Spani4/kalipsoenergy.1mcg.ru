@@ -2,10 +2,10 @@
 
     margin-bottom: 60px;
 
-    @include screen(768) {
+    @include screen(767) {
         margin-bottom: 50px;
     }
-    @include screen(585) {
+    @include screen(575) {
         margin-bottom: 40px;
     }
 

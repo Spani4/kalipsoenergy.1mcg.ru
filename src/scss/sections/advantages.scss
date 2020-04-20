@@ -2,8 +2,6 @@
 
 .advantages {
     
-    @extend %outer;
-
     &__content {
         @include flex(row,fs,c,w);
         margin: -20px -10px;
@@ -18,7 +16,7 @@
             width: 50%;
             padding: 10px;
         }
-        @include screen(768) {
+        @include screen(767) {
             width: 100%;
             display: none;
 
@@ -34,7 +32,7 @@
         display: none;
         margin-top: 20px;
 
-        @include screen(768) {
+        @include screen(767) {
             display: inline-block;
         }
     }
