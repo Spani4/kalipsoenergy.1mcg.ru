@@ -4,7 +4,7 @@ html(lang="ru")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        title Page Title
+        title Калипсо
         
     body
         include ../mixins/mixins.pug
@@ -16,12 +16,13 @@ html(lang="ru")
         block content
         
         include ../modules/footer.pug
-
+        #personal-area
         //- include ../modules/modals.pug
 
         
         include ../modules/front-navigation.pug
 
+        //- RU / EN
         //- div(id="google_translate_element2", style="display: none;")
         //- script(type="text/javascript") function googleTranslateElementInit2() {new google.translate.TranslateElement({pageLanguage: 'ru',autoDisplay: false}, 'google_translate_element2');}
         //- script(type="text/javascript", src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2")

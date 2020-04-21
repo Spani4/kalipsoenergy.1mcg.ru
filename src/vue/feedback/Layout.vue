@@ -18,8 +18,7 @@
                 v-model="message"
             )
             button.feedback__send-btn.button(
-                :disabled="name.length == 0 || contacts.length == 0 || message.length == 0"
-                @click="sendFeedback"
+                @click.prevent="sendFeedback"
             ) отправить
 </template>
 
@@ -38,7 +37,9 @@ export default {
             this.name = '';
             this.contacts = '';
             this.message = '';
-        }
-    }
+        },
+    },
+
+    computed: {}
 }
 </script>
