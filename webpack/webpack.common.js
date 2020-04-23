@@ -8,6 +8,7 @@ const Entry                = require('./Entry');
 
 const PUBLIC_PATH = path.join(__dirname, '../public', 'assets');
 const IMG_PATH = path.join(PUBLIC_PATH, 'images');
+const FAVICONS_PATH = path.join(PUBLIC_PATH, 'favicons');
 
 module.exports = {
     entry       : {
@@ -44,7 +45,8 @@ module.exports = {
     plugins     : [
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin([
-            {from: 'src/images/raw', to: IMG_PATH}
+            {from: 'src/images/raw', to: IMG_PATH},
+            {from: 'src/images/favicons', to: FAVICONS_PATH}
         ]), 
         new SpriteLoaderPlugin({
             plainSprite: true,
