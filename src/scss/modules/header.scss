@@ -89,10 +89,11 @@
     &__personal-area-btn {
         display: none;
         align-self: center;
+        
         @include screen(991) {
             @include flex(col,c)
         }
-        @include screen(991) {
+        @include screen(767) {
             display: none;
         }
     }
