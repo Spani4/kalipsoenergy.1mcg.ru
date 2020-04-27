@@ -1,18 +1,19 @@
 <template lang="pug">
-    .personal-area
-        .wrapper personal area
+    .personal-area(v-if="$root.show")
+        .wrapper 
+            .personal-area__window
+                button.personal-area__close-btn(
+                    @click="$root.toggle"
+                ) &times;
+                .personal-area__content personal area
+                    input(v-focus)
 </template>
 
 
 
 <script>
 export default {
-    props: {
-        show: Boolean,
-    },
-    
-    mounted() {
-        console.log(this);
-    }
+
+
 }
 </script>

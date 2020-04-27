@@ -1,34 +1,53 @@
 import Vue from 'vue';
 import Layout from './Layout.vue';
+import store from '../../store';
+
+//directives
+Vue.directive('focus', {
+    inserted: function (el) {
+        el.focus()
+    }
+})
+
 
 export default class PersonalArea {
 
     constructor() {
 
-        this._vm = this._initVue();
-        this._openBtns = document.querySelectorAll('.js-personal-area-btn');
+        const el = document.querySelector('#personal-area');
+
+        this._vm = new Vue({
+            name: 'Personal-Area',
+            el,
+            store,
+            data: {
+                show: false,
+            },
+
+            methods: {
+                toggle() {
+                    this.show = !this.show;
+                }
+            },
+
+            directives: {
+                focus,
+            },
+
+            render: h => h(Layout),
+        })
 
         this._initBtns();
     }
 
-    _initVue() {
-        const el = document.querySelector('#personal-area');
-
-        return new Vue({
-            el,
-            render: h => h(Layout, {
-                props: {
-                    show: false,
-                }
-            }),
-        })
-    }
-
     _initBtns() {
-        this._openBtns.forEach((btn) => {
+
+        const btns = document.querySelectorAll('.js-personal-area-btn');
+
+        btns.forEach((btn) => {
 
             btn.addEventListener('click', () => {
-                this._vm.show = true;
+                this._vm.toggle();
             })
         });
     }

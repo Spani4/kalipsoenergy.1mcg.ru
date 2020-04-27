@@ -8,6 +8,7 @@ export default class {
     constructor() {
 
         new Vue({
+            name: 'Feedback',
             el,
             render: h => h(Layout),
         });

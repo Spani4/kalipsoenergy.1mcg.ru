@@ -4,7 +4,6 @@ export default async function refreshToken() {
 
     if ( !tokens || !tokens._links ) {
         throw 'Token problem';
-        return;
     }
 
     let link = tokens._links['refresher'].href + '?token=' + tokens['refreshToken'];
@@ -12,12 +11,12 @@ export default async function refreshToken() {
 
     try {
         let response = await fetch(link, { method: 'POST'});
-        if ( !response.ok ) throw `Bad response: ${response.status}. (refresh attempt)`;
+        if ( !response.ok ) throw {message: `Bad response: ${response.status}. (refresh attempt)`};
         newTokens = await response.json();
         
-    } catch(e) {
-        throw 'Failed to refresh tokens';
-        return;
+    } catch(err) {
+        console.error('Failed to refresh tokens');
+        throw err.message;
     }
 
     if ( newTokens !== null ) {

@@ -1,6 +1,36 @@
 .personal-area {
 
+    // @extend %centered;
+
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    overflow-y: auto;
+    background-color: rgba(0,0,0,.5);
+
     &__window {
-        
+        position: relative;
+        min-height: 400px;
+        padding: 40px;
+        background-color: $bg-color;
+    }
+
+    &__close-btn {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        right: 10px;
+        top: 10px;
+        overflow: hidden;
+        font-size: 40px;
+        line-height: 40px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
     }
 }
