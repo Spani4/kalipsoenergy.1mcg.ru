@@ -1,6 +1,6 @@
-.personal-area {
+@import "../components/sign-in";
 
-    // @extend %centered;
+.personal-area {
 
     position: fixed;
     width: 100%;
@@ -15,22 +15,54 @@
 
     &__window {
         position: relative;
-        min-height: 400px;
-        padding: 40px;
+        min-height: 1020px;
         background-color: $bg-color;
     }
 
     &__close-btn {
-        position: absolute;
-        width: 40px;
-        height: 40px;
-        right: 10px;
-        top: 10px;
+        position: relative;
+        width: 25px;
+        height: 25px;
+        border: none;
         overflow: hidden;
         font-size: 40px;
-        line-height: 40px;
-        border: none;
+        line-height: 25px;
+        color: $font-color-alt;
         background-color: transparent;
         cursor: pointer;
+
+        &::after  {
+            content: "";
+            position: absolute;
+            left: -5px;
+            right: -5px;
+            top: -5px;
+            bottom: -5px;
+        }
+
+        &:hover {
+            opacity: .8;
+        }
+    }
+
+    &__head {
+        @include flex(row,sb,c);
+        padding: 40px;
+        font-size: 24px;
+        text-transform: uppercase;
+        font-family: $sans-title;
+        color: $font-color-alt;
+        background-color: $bg-color-alt;
+    }
+
+    &__body {
+        padding: 60px 40px 50px;
+    }
+
+    &__title {
+        font-size: 18px;
+        text-transform: uppercase;
+        font-family: $sans-title;
+        color: $font-color-main;
     }
 }

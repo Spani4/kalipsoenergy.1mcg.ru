@@ -1,0 +1,63 @@
+@import "../utils";
+
+.noty_theme__sunset.noty_bar {
+    margin: 4px 0;
+    overflow: hidden;
+    border-radius: 2px;
+    position: relative;
+
+    .noty_body {
+        padding: 10px;
+        font-size: 14px;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, .1);
+    }
+
+    .noty_buttons {
+        padding: 10px;
+    }
+}
+
+.noty_theme__sunset.noty_type__alert,
+.noty_theme__sunset.noty_type__notification {
+    background-color: $red-700;
+    color: $white;
+
+    .noty_progressbar {
+        background-color: #fff;
+    }
+}
+
+.noty_theme__sunset.noty_type__warning {
+    background-color: #FFD166;
+    color: #fff;
+}
+
+.noty_theme__sunset.noty_type__error {
+    background-color: $red-700;
+    color: $white;
+
+    .noty_progressbar {
+        opacity: 0.8;
+        background-color: $white;
+    }
+}
+
+.noty_theme__sunset.noty_type__info,
+.noty_theme__sunset.noty_type__information {
+    background-color: $secondary;
+    color: $white;
+
+    .noty_progressbar {
+        opacity: 0.6;
+    }
+}
+
+.noty_theme__sunset.noty_type__success {
+    background-color: $primary;
+    color: $white;
+
+    .noty_progressbar {
+        opacity: 0.8;
+        background-color: $white;
+    }
+}

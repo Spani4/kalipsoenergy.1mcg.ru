@@ -27,6 +27,9 @@ export default class PersonalArea {
             methods: {
                 toggle() {
                     this.show = !this.show;
+                    const body = document.querySelector('body');
+                    if ( this.show ) body.classList.add('no-scroll');
+                    else body.classList.remove('no-scroll');
                 }
             },
 
@@ -38,6 +41,7 @@ export default class PersonalArea {
         })
 
         this._initBtns();
+        this._vm.toggle();
     }
 
     _initBtns() {

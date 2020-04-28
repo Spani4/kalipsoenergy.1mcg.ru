@@ -2,17 +2,36 @@
     .personal-area(v-if="$root.show")
         .wrapper 
             .personal-area__window
-                button.personal-area__close-btn(
-                    @click="$root.toggle"
-                ) &times;
-                .personal-area__content personal area
-                    input(v-focus)
+                .personal-area__head личный кабинет
+                    button.personal-area__close-btn(
+                        @click="$root.toggle"
+                    ) &times;
+                .personal-area__body
+                    component(:is="activeComponent")
+                        input(v-focus)
 </template>
 
 
 
 <script>
+import Sign from './components/auth/Sign.vue';
+
 export default {
+
+    components: {
+        Sign,
+    },
+
+    data() {
+        return {
+            activeComponent: null,
+        }
+    },
+
+    created() {
+        const token = localStorage.getItem('jwt');
+        if ( !token ) this.activeComponent = 'sign';
+    }
 
 
 }
