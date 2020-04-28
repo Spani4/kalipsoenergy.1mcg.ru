@@ -8,7 +8,6 @@
                     ) &times;
                 .personal-area__body
                     component(:is="activeComponent")
-                        input(v-focus)
 </template>
 
 

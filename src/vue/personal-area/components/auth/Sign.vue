@@ -1,7 +1,12 @@
 <template lang="pug">
     .container
-        sign-in(v-if="step == 'sign-in'")
-        sign-up(v-if="step == 'sign-up'")
+        sign-up(
+            v-if="registered === false"
+        )
+        sign-in(
+            v-else
+            @switchToSignUp="registered = false"    
+        )
         
 </template>
 
@@ -20,8 +25,14 @@ export default {
 
     data() {
         return {
-            step: 'sign-in',
+            registered: null,
         }
     },
+
+    methods: {
+        test() {
+            console.log('test');
+        }
+    }
 }
 </script>

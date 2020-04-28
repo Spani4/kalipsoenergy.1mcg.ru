@@ -1,0 +1,65 @@
+.sign-in {
+
+    &__wrapper {
+        max-width: 420px;
+        margin: 0 auto;
+        padding: 0 20px;
+
+        & > * {
+            margin-bottom: 20px;
+        }
+
+        @include screen(767) {
+            text-align: center;
+        }
+    }
+
+    &__title {
+        font-size: 18px;
+        text-transform: uppercase;
+        font-family: $sans-title;
+        text-align: center;
+        color: $font-color-main;
+    }
+
+    &__form {
+        margin-bottom: 40px;
+
+        & > * {
+            margin-bottom: 20px;
+        }
+
+        &-row {
+            @include flex(row, sb, fs);
+
+            @include screen(767) {
+                @include flex(col, fs, c);
+            }
+        }
+    }
+
+    &__password-recovery-btn {
+        @include transition(all);
+        cursor: pointer;
+        
+        &:hover {
+            opacity: .8;
+            border-bottom: 1px solid $font-color-main;
+        }
+    }
+
+    &__sign-up-prompt,
+    &__password-recovery-btn {
+        font-weight: 300;
+    }
+
+    .button {
+        margin-bottom: 20px;
+    }
+
+    .errors {
+        height: 40px;
+        margin-top: -20px;
+        margin-bottom: 0px;
+    }
+}
