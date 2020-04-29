@@ -17,14 +17,13 @@
                     :class="{ error: errors.password !== false }"
                     v-model="password"
                     @focus="errors.password = false"
-                    @blur="validate('password')"
                 )
                 .sign-in__form-row
                     button.button(
                         type="submit"
                     ) войти
                     .sign-in__password-recovery-btn(
-                        @click.prevent=""
+                        @click.prevent="$emit('switchToPassowrdRecovery')"
                     ) Забыли пароль?
                 .errors
                     p(v-if="errors.phone != false") {{ errors.phone }}
@@ -65,7 +64,7 @@ export default {
             switch (field) {
                 case 'phone': if ( this.phone.length != 11 ) this.errors.phone = 'Введите номер телефона полностью';
                     break;
-                case 'password': if ( this.phone.length == 0 ) this.errors.password = 'Введите пароль';
+                case 'password': if ( this.password.length == 0 ) this.errors.password = 'Введите пароль';
             }
         },
 

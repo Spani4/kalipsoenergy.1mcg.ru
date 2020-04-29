@@ -9,6 +9,8 @@
     @extend %form-elem;
     height: 50px;
 
+    transition: all .15;
+
     &.error {
         border-color: $font-color-error;
         background-color: $bg-color-error;

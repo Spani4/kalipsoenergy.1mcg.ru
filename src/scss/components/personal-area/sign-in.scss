@@ -22,6 +22,11 @@
         color: $font-color-main;
     }
 
+    &__subtitle {
+        @extend .sign-in__title;
+        margin-bottom: 40px;
+    }
+
     &__form {
         margin-bottom: 40px;
 

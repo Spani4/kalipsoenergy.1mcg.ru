@@ -1,12 +1,21 @@
 <template lang="pug">
     .container
-        sign-up(
-            v-if="registered === false"
-        )
-        sign-in(
-            v-else
-            @switchToSignUp="registered = false"    
-        )
+
+        transition(name="fade", mode="out-in")
+
+            sign-up(
+                v-if="registered === false"
+            )
+
+            sign-in(
+                v-if="!passwordLost && registered"
+                @switchToSignUp="registered = false"
+                @switchToPassowrdRecovery="passwordLost = true"
+            )
+
+            password-recovery(
+                v-if="passwordLost"
+            )
         
 </template>
 
@@ -25,7 +34,8 @@ export default {
 
     data() {
         return {
-            registered: null,
+            registered: true,
+            passwordLost: false,
         }
     },
 
@@ -36,3 +46,20 @@ export default {
     }
 }
 </script>
+
+
+<style lang="scss" scoped>
+.fade-enter {
+    opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .2s;
+}
+.fade-enter-to {
+    opacity: 1;
+}
+.fade-leave-to  {
+    opacity: 0;
+}
+</style>
