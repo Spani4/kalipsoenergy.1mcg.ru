@@ -1,7 +1,7 @@
 <template lang="pug">
     input.form-input(
         type="text"
-        placeholder="Логин (Мобильный телефон)"
+        :placeholder="placeholder"
         :class="{ error: isError }"
         v-imask="phoneMask"
         :model="value"
@@ -17,7 +17,11 @@ import { IMaskDirective } from 'vue-imask';
 
 export default {
     props: {
-        isError: Boolean
+        isError: Boolean,
+        placeholder: {
+            type: String,
+            default: "Логин (Мобильный телефон)"
+        }
     },
 
     data() {
