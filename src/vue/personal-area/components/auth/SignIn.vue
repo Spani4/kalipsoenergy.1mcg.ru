@@ -22,7 +22,7 @@
                     button.button(
                         type="submit"
                     ) войти
-                    .sign-in__password-recovery-btn(
+                    .sign-in__mini-btn(
                         @click.prevent="$emit('switchToPassowrdRecovery')"
                     ) Забыли пароль?
                 .errors
@@ -64,7 +64,7 @@ export default {
             switch (field) {
                 case 'phone': if ( this.phone.length != 11 ) this.errors.phone = 'Введите номер телефона полностью';
                     break;
-                case 'password': if ( this.password.length == 0 ) this.errors.password = 'Введите пароль';
+                case 'password': if ( this.password.length == 0 || this.password.length > 20 ) this.errors.password = 'Введите пароль';
             }
         },
 

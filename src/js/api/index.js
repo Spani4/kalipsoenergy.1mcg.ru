@@ -6,14 +6,23 @@ export function signIn(data) {
     console.log('sign in');
 }
 
+export function sendPhone() {
+    console.log('sending phone...');
+}
+
+export function sendSmsCode() {
+    console.log('sending sms code...');
+}
+
+export function sendUserData() {
+    console.log('sending user data...');
+}
+
+
 export const passwordRecovery = {
-    sendPhone() {
-        console.log('send phone')
-    },
-    
-    sendCode() {
-        console.log('send code')
-    },
+    sendPhone,
+
+    sendSmsCode,
     
     sendNewPassword() {
         console.log('send new password')

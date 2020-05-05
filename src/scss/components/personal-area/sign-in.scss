@@ -43,10 +43,12 @@
         }
     }
 
-    &__password-recovery-btn {
+    &__mini-btn {
         @include transition(all);
+        display: inline-block;
         cursor: pointer;
-        
+        border-bottom: 1px solid transparent;
+
         &:hover {
             opacity: .8;
             border-bottom: 1px solid $font-color-main;
@@ -54,7 +56,7 @@
     }
 
     &__sign-up-prompt,
-    &__password-recovery-btn {
+    &__mini-btn {
         font-weight: 300;
     }
 

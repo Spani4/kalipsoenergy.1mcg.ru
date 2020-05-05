@@ -1,6 +1,7 @@
 .button {
     @include transition(all);
     
+    position: relative;
     display: inline-block;
     width: 200px;
     height: 50px;
@@ -21,6 +22,13 @@
     &:disabled {
         background-color: $grey-medium;
         color: $grey-dark;
+    }
+
+    &.pending {
+        color: $font-color-alt;
+        animation: pending 1.5s infinite;
+        opacity: .6;
+        cursor: default;
     }
 }
 
@@ -71,9 +79,10 @@
     &.light.next::before { border-left-color: $font-color-alt; }
 
     &.disabled { opacity: .1; }
+}
 
-    .icon {
-        // stroke: $color4;
-    }
-
+@keyframes pending { 
+    0% { opacity: .6 }
+    50% { opacity: .4 }
+    100% { opacity: .6 }
 }

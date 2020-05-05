@@ -2,7 +2,8 @@
     input.form-input(
         type="text"
         :placeholder="placeholder"
-        :class="{ error: isError }"
+        :class="{ error: isError, required: isRequired }"
+        :disabled="isDisabled"
         v-imask="phoneMask"
         :model="value"
         @accept="$emit('input', $event.detail.unmaskedValue)"
@@ -17,7 +18,18 @@ import { IMaskDirective } from 'vue-imask';
 
 export default {
     props: {
-        isError: Boolean,
+        isError: {
+            type: Boolean,
+            default: false,
+        },
+        isRequired: {
+            type: Boolean,
+            default: false,
+        },
+        isDisabled: {
+            type: Boolean,
+            default: false,
+        },
         placeholder: {
             type: String,
             default: "Логин (Мобильный телефон)"

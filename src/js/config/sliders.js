@@ -2,7 +2,10 @@ export default {
     main: {
         slidesPerView: 1,
         loop: true,
-        lazy: true,
+        lazy: {
+            loadPrevNext: true,
+            loadPrevNextAmount: 1,
+        },
         navigation: {
             nextEl: '.js-main-slider .js-next-btn',
             prevEl: '.js-main-slider .js-prev-btn',

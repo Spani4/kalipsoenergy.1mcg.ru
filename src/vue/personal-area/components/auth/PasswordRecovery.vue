@@ -18,8 +18,13 @@
                         @focus="errors.phone = false"
                         :isError="errors.phone !== false"
                     )
+                    div
+                        .sign-in__mini-btn(
+                            @click.prevent="nextStep"
+                        ) Уже получили код?
                     button.button(
                         type="submit"
+                        :class="{ pending }"
                     ) отправить
 
 
@@ -37,8 +42,13 @@
                         @focus="errors.code = false"
                         :class="{ error: errors.code !== false }"
                     )
+                    div
+                        .sign-in__mini-btn(
+                            @click.prevent="prevStep"
+                        ) Ввести номер телефона заново?                    
                     button.button(
                         type="submit"
+                        :class="{ pending }"
                     ) отправить
 
 
@@ -48,6 +58,7 @@
                     @submit.prevent="sendPassword"
                 )
                     .sign-in__text Пожалуйста, придумайте новый пароль
+                    .sign-in__text Длина пароля должна составлять от 6 до 20 символов
                     input.form-input(
                         type="password"
                         placeholder="Новый пароль"
@@ -65,7 +76,11 @@
                     )
                     button.button(
                         type="submit"
+                        :class="{ pending }"
                     ) отправить
+
+                    .errors(style="margin-top: 0")
+                        p(v-if="errors.passwords") {{ errors.passwords }}
 
 </template>
 
@@ -85,12 +100,13 @@ export default {
         return {
             steps: ['phone', 'code', 'newPassword'],
             stepIndex: 0,
-            // step: 'phone',
 
             phone: '',
             code: '',
             newPassword: '',
             newPasswordRepeat: '',
+
+            pending: false,
 
             errors: {
                 phone: false,
@@ -105,9 +121,18 @@ export default {
             switch (field) {
                 case 'phone': if ( this.phone.length != 11 ) this.errors.phone = 'Введите номер телефона полностью';
                     break;
-                case 'code': if ( this.code.length == 0 ) this.errors.code = 'Введите код из СМС';
+                case 'code': {
+                    if ( this.code.length == 0 ) this.errors.code = 'Введите код из СМС';
+                    if ( this.code.length > 20 ) this.errors.code = 'Не корректный код';
+                }
                     break;
-                case 'newPassword': if ( !this.newPassword.length || this.newPassword !== this.newPasswordRepeat ) this.errors.passwords = 'Пароли должны совпадать';
+                case 'newPassword': {
+                    if ( this.newPassword !== this.newPasswordRepeat ) {
+                        this.errors.passwords = 'Пароли должны совпадать';
+                    } else if ( this.newPassword.length < 6 || this.newPassword.length > 20 ) {
+                        this.errors.passwords = 'Длина пароля должна составлять от 6 до 20 символов';
+                    }
+                }
             }
         },
 
@@ -116,20 +141,42 @@ export default {
             if ( this.errors.phone !== false ) return;
 
             api.passwordRecovery.sendPhone();
-            this.nextStep();
+
+            this.pending = true;
+
+            setTimeout(() => {       
+                this.pending = false;
+                this.nextStep();
+            }, 900);
+
         },
+
         sendCode() {
             this.validate(this.step);
             if ( this.errors.code !== false ) return;
 
-            api.passwordRecovery.sendCode();
-            this.nextStep();
+            api.passwordRecovery.sendSmsCode();
+
+            this.pending = true;
+
+            setTimeout(() => {       
+                this.pending = false;
+                this.nextStep();
+            }, 900);
+            
         },
+
         sendPassword() {
             this.validate(this.step);
             if ( this.errors.passwords !== false ) return;
 
             api.passwordRecovery.sendNewPassword();
+
+            this.pending = true;
+
+            setTimeout(() => {       
+                this.pending = false;
+            }, 900);
         },
 
         nextStep() {

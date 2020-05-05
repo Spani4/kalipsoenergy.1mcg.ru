@@ -2,7 +2,7 @@
     .personal-area(v-if="$root.show")
         .wrapper 
             .personal-area__window
-                .personal-area__head личный кабинет
+                .personal-area__head личный кабинет&nbsp;&nbsp;&nbsp;
                     button.personal-area__close-btn(
                         @click="$root.toggle"
                     ) &times;
