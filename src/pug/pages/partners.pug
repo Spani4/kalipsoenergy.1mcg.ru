@@ -1,0 +1,37 @@
+extends ../layout/layout.pug
+
+
+block content
+
+    - 
+        var partners = [{
+                name: 'ООО «КОНДОР-ТЕХНО»',
+                description: 'Технические средства безопасности и связи'
+            }, {
+                name: 'КОТТЕДЖНЫЙ ПОСЕЛОК «ВЕГА» ',
+                description: 'Продажа участков под строительство'
+            }, {
+                name: 'ГРУППА КОМПАНИЙ «СКАРЛЕТТ И МОНАРХ» ',
+                description: 'Разработка программного обеспечения в Архангельске'
+            }, {
+                name: 'ПОЛИГРАФ',
+                description: 'Проверка на полиграфе в Архангельске'
+            }, {
+                name: 'АРХЭНЕРГО',
+                description: 'Архангельский филиал Россети Северо-Запад'
+            }
+        ]
+
+
+    main.partners
+        .partners__image.page-image(style=`background-image: url(${require('../../images/main-slider-img.jpg')}`)
+        .partners__wrapper.wrapper
+            h1.partners__title.page-title наши партнеры
+            .partners__content
+                each partner, i in partners
+                    .partners__item
+                        +bright-plate-partner(partner.name, partner.description)
+
+        
+    include ../sections/projects-slider.pug
+

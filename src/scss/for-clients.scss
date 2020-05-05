@@ -1,0 +1,45 @@
+@import "globals/";
+
+@import "components/page-title";
+@import "components/section";
+@import "components/page-image";
+@import "components/bright-plate";
+@import "sections/project-slider";
+
+
+.for-clients {
+
+    padding-bottom: 60px;
+    line-height: 150%;
+
+    &__content {
+        margin: -10px;
+    }
+
+    &__content-item {
+
+        @include flex(row,fs,s);
+
+        margin-bottom: 40px;
+
+        @include screen(767) {
+            flex-direction: column;
+        }
+
+        &-plate {
+            min-width: 380px;
+            max-width: 380px;
+            height: 165px;
+            padding: 10px;
+
+            @include screen(767) {
+                min-width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        &-text {
+            padding: 10px;
+        }
+    }
+}

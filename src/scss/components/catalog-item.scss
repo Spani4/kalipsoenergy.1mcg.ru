@@ -1,0 +1,68 @@
+.catalog-item {
+
+    @include flex(col,fs,s);
+
+    height: 100%;
+
+    &__header {
+        @include flex(row,c,c);
+        min-height: 64px;
+        background-color: $bg-color-alt;
+    }
+
+    &__title {
+        padding-left: 10px;
+        padding-right: 10px;
+        font-family: $sans-title;
+        font-size: 18px;
+        text-transform: uppercase;
+        color: $font-color-alt;
+    }
+
+    &__image {
+        height: 240px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        @include screen(575) {
+            height: 205px;
+        }
+    }
+
+    &__body {
+        flex-grow: 1;
+        padding: 40px 20px;
+        background-color: $grey-light;
+        font-size: 14px;
+        line-height: 150%;
+        
+        @include screen(575) {
+            padding: 20px 0;
+            background-color: $bg-color;
+        }
+    }
+
+    &__footer {
+        @include flex(row,sb);
+        padding: 0 20px;
+        background-color: $grey-light;
+
+        @include screen(991) {
+            flex-direction: column;
+        }
+        @include screen(767) {
+            flex-direction: row;
+        }
+        @include screen(575) {
+            flex-direction: column;
+            padding: 0;
+            background-color: $bg-color;
+        }
+
+        .button {
+            margin-bottom: 20px;
+        }
+    }
+
+}

@@ -6,15 +6,57 @@
     padding: 10px 20px;
     background-color: $bg-color-bright;
 
+    @include screen(480) {
+        padding: 15px;
+    }
+
+    &__row {
+        @include flex(row,fs,c);
+        width: 100%;
+        height: 100%;        
+    }
+
+    &__col {
+        @include flex(col,fs,s);
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    &__title {
+        padding: 10px 0;
+        color: $font-color-alt;
+        font-family: $sans-title;
+        text-transform: uppercase;
+    }
+
+    &__description {
+        flex-grow: 1;
+        padding-bottom: 10px;
+        font-weight: 300;
+    }
+
     &__number {
         margin-right: 20px;
         font-family: $sans-title;
         font-size: 64px;
         color: $font-color-alt;
+
+        @include screen(480) {
+            margin-right: 10px;
+            font-size: 48px;
+        }
     }
 
     &__text {
         color: $font-color-dark;
         font-size: 18px;
+        overflow: hidden;
+
+        @include screen(480) {
+            font-size: 16px;
+        }
     }
+
 }

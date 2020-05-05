@@ -1,0 +1,16 @@
+.page-image {
+    height: 540px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    @include screen(1199) {
+        height: 520px;
+    }
+    @include screen(991) {
+        height: 500px;
+    }
+    @include screen(767) {
+        height: 480px;
+    }
+}

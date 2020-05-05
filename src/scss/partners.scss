@@ -1,0 +1,35 @@
+@import "globals/";
+
+@import "components/page-title";
+@import "components/page-image";
+@import "components/bright-plate";
+@import "components/section";
+@import "sections/project-slider";
+
+.partners {
+
+    padding-bottom: 60px;
+
+
+    &__content {
+        @include flex(row,fs,s,wrap);
+        margin: -10px;
+    }
+
+    &__item {
+
+        padding: 10px;
+        width: 25%;
+        min-height: 130px;
+
+        @include screen(1199) {
+            width: calc(100%/3);
+        }
+        @include screen(991) {
+            width: 50%;
+        }        
+        @include screen(767) {
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,10 @@
+mixin catalog-item(service)
+
+    .catalog-item
+        .catalog-item__header
+            h3.catalog-item__title #{service.title}
+        .catalog-item__image(style=`background-image: url(${service.image})`)
+        .catalog-item__body #{service.description}
+        .catalog-item__footer
+            a.button(href="/feedback.html") оставить заявку
+            a.button(href="#") подробнее

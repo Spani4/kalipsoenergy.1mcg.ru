@@ -1,0 +1,31 @@
+@import "globals/";
+
+@import "components/page-title";
+@import "components/page-image";
+@import "components/catalog-item";
+
+
+.catalog {
+
+    padding-bottom: 60px;
+    line-height: 150%;
+
+
+
+    &__content {
+        @include flex(row,c,s,wrap);
+        margin: -10px;
+    }
+
+    &__item-wrapper {
+
+
+        padding: 10px;
+        width: 50%;
+
+        @include screen(767) {
+            width: 100%;
+            max-width: 650px;
+        }
+    }
+}

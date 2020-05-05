@@ -1,0 +1,11 @@
+mixin bright-plate-advantage(text, number)
+    .bright-plate
+        .bright-plate__row
+            .bright-plate__number 0#{number}
+            .bright-plate__text!= text
+
+mixin bright-plate-partner(title, text)
+    .bright-plate
+        .bright-plate__col
+            .bright-plate__title= title
+            .bright-plate__description!= text

@@ -2,16 +2,15 @@
 
 @import "components/custom-text";
 @import "components/page-title";
+@import "components/page-image";
 
 
 .pages {
 
-    // &__title {
+    padding-bottom: 60px;
+    line-height: 150%;
 
-    //     font-size: 24px;
-    // }
-
-    // &__content {
-    //     margin-bottom: 60px;
-    // }
+    &__content {
+        max-width: 680px;
+    }
 }

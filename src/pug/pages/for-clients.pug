@@ -1,0 +1,32 @@
+extends ../layout/layout.pug
+
+
+block content
+    - 
+        var advantages = [
+        'Испытание сетей перед сдачей в эксплатацию',
+        'Гарантия качества - 2&nbsp;года',
+        'Бесплатное обслуживание сетей в течении 3&nbsp;лет',
+        'Периодические проверки и ремонт сетей',
+        'Подготовка всех необходимых документов',
+        'Квалифицированный персонал с многолетним стажем работы'
+        ]
+
+
+    main.for-clients
+        .for-clients__image.page-image(style=`background-image: url(${require('../../images/page-img.jpg')}`)
+        .for-clients__wrapper.wrapper
+            h1.for-clients__title.page-title клиентам
+            .for-clients__content
+                each item, i in advantages
+                    .for-clients__content-item
+                        .for-clients__content-item-plate
+                            +bright-plate-advantage(item, i+1)
+                        .for-clients__content-item-text Компания Калипсо  всегда проводит испытание электросетей перед сдачей 
+                            | в эксплатацию. Оборудование испытывается под повышенным напряжением, 
+                            | так же проводится измерение параметров элетроустановок. 
+                            | В случаях обнаружения неполадок производится своевременный ремонт.
+
+        
+    include ../sections/projects-slider.pug
+
