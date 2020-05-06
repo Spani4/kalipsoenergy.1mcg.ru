@@ -14,6 +14,7 @@
 
 <script>
 import Sign from './components/auth/Sign.vue';
+import * as api from '../../js/api';
 
 export default {
 
@@ -29,7 +30,15 @@ export default {
 
     created() {
         const token = localStorage.getItem('jwt');
-        if ( !token ) this.activeComponent = 'sign';
+
+        if ( !token ) {
+            this.activeComponent = 'sign';
+
+            api.getSmsApi()
+                .then(data => {
+                    this.$store.commit('setSiteKey', data.siteKey);
+                });
+        }
     }
 
 

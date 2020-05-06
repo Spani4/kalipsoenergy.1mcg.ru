@@ -5,5 +5,13 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 
-    
+    state: {
+        siteKey: '',
+    },
+
+    mutations: {
+        setSiteKey(state, siteKey) {
+            state.siteKey = siteKey;
+        }
+    }
 })

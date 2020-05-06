@@ -2,6 +2,15 @@ import axios from 'axios';
 
 import links from './links';
 
+export function getSmsApi() {
+
+    return axios(links.authSms)
+        .then(res => {
+            if ( res.status == 200 ) return res.data;
+        })
+        .catch(error => { throw error });
+}
+
 export function signIn(data) {
     console.log('sign in');
 }
