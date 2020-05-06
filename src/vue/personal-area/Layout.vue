@@ -37,6 +37,9 @@ export default {
             api.getSmsApi()
                 .then(data => {
                     this.$store.commit('setSiteKey', data.siteKey);
+                }).catch(error => {
+                    console.error('Api sms error');
+                    console.error(err);                    
                 });
         }
     }
