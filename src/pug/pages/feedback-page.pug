@@ -1,0 +1,10 @@
+extends ../layout/layout.pug
+
+block content
+    main.feedback-page
+        .feedback-page__image.page-image(style=`background-image: url(${require('../../images/main-slider-img.jpg')}`)
+        .feedback-page__wrapper.wrapper
+            h1.feedback-page__title.page-title обратная связь
+            h2.feedback-page__title.page-title остались вопросы? напишите нам!
+            .feedback-page__content
+                #feedback-page-form

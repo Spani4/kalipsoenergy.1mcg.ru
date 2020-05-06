@@ -1,14 +1,13 @@
 import Vue from 'vue';
 import Layout from './Layout.vue';
 
-const el = document.querySelector('#feedback');
 
 export default class {
 
-    constructor() {
+    constructor(el) {
 
         new Vue({
-            name: 'Feedback',
+            name: 'Feedback-Page',
             el,
             render: h => h(Layout),
         });

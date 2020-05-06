@@ -2,7 +2,7 @@ import "../scss/main.scss";
 
 import initGlobalScripts from "./global";
 import { initMainSlider, initProjectsSlider } from "./components/sliders";
-import Feedback from "../vue/feedback";
+import FeedbackSection from "../vue/feedback-section";
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMainSlider();
     initProjectsSlider();
 
-    new Feedback();
+    const el = document.querySelector('#feedback');
+    new FeedbackSection(el);
 });
 

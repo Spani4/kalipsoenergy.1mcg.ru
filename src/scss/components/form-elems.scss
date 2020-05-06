@@ -20,6 +20,22 @@
     &:disabled {
         background-color: $grey-light;
     }
+
+    & + .required {
+        position: relative;
+        display: inline-block;
+        
+        &::after {
+            content: "*";
+            position: absolute;
+            left: -30px;
+            top: -15px;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: 20px;
+            color: $bg-color-alt;
+        }
+    }
 }
 
 .form-textarea {

@@ -158,7 +158,7 @@
                         span Я даю согласие на обработку персональных данных и принимаю 
                             |
                             a.sign-up__link(href="#") Политику конфиденциональности
-                    .sign-up__text *&nbsp;&nbsp; Поля обязательные для заполнения
+                    .sign-up__text *&nbsp;&nbsp; Поля, обязательные для заполнения
                     .errors
                         transition-group(name="fade", mode="out-in")
                             p(v-if="errors.phone !== false", :key="errors.phone") {{ errors.phone }}
