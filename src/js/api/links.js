@@ -1,7 +1,9 @@
+const origin = document.location.origin;
+
 export default {
-	authSms: `${document.location.origin}/api/auth/sms`,
-	codeSender: `${document.location.origin}/api/auth/sms/code-sender`,
-	codeVerifier: `${document.location.origin}/api/auth/sms/code-verifier`,
+	authSms: `${origin}/api/auth/sms`,
+	codeSender: `${origin}/api/auth/sms/code-sender`,
+	codeVerifier: `${origin}/api/auth/sms/code-verifier`,
 	
 	// cart: `${document.location.origin}/api/cart`,
 	// cartItems: `${document.location.origin}/api/cart/items`,

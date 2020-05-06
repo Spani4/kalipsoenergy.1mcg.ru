@@ -29,19 +29,20 @@ export default {
     },
 
     created() {
+
         const token = localStorage.getItem('jwt');
 
         if ( !token ) {
             this.activeComponent = 'sign';
 
-            api.getSmsApi()
-                .then(data => {
-                    this.$store.commit('setSiteKey', data.siteKey);
-                }).catch(error => {
-                    console.error('Api sms error');
-                    console.error(err);                    
-                });
         }
+
+        api.getSmsApi()
+            .then(data => {
+                this.$store.commit('setSiteKey', data.siteKey);
+            }).catch(error => { 
+                if (error.expected) this.$noty('error', error.message);                  
+            });
     }
 
 

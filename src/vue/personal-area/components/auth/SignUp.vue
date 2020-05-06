@@ -169,6 +169,7 @@
                             input.form-input(
                                 type="text"
                                 placeholder="Введите код из сообщения"
+                                v-model="userData.code"
                             )   
                             button.button(
                                 type="submit"
@@ -216,6 +217,7 @@ export default {
                 ogrn: '',
                 category: 'Физическое лицо',
                 agree: false,
+                code: ''
             },
 
             categories: [
@@ -256,6 +258,7 @@ export default {
                 case 'patronimic':
                 case 'snils':
                 case 'inn':
+                case 'code':
                 case 'ogrn': if ( this.userData[field].length > 50) this.userData[field] = this.userData[field].trim().substr(0, 50);
                     break;
                 
@@ -272,18 +275,24 @@ export default {
         sendPhone() {
 
             if ( this.pending ) return;
-            
+
             const isValide = this.validateAll();
 
             if ( !isValide ) return;
 
             this.pending = true;
-            api.sendPhone();
 
-            setTimeout(() => {       
-                this.hasCode = true;
-                this.pending = false;
-            }, 900);
+            const data = { phone: this.userData.phone };
+            api.sendPhone(data)
+                .then(jwt => {
+                    console.log(jwt)
+                    localStorage.setItem('auth-jwt', JSON.stringify(jwt));
+                    this.pending = false;
+                    this.hasCode = true;
+                }).catch(error => {
+                    if (error.expected) this.$noty('error', error.message);
+                });
+
         },
 
         sendCode() {
@@ -292,10 +301,10 @@ export default {
 
             this.pending = true;
 
-            setTimeout(() => {       
-                this.pending = false;
-            }, 1000);
-
+            // setTimeout(() => {       
+            //     this.pending = false;
+            // }, 1000);
+            const data = { code: this.userData.code };
             api.sendSmsCode();
         },
 
