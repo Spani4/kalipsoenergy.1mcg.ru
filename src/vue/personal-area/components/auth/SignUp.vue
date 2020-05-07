@@ -5,7 +5,7 @@
             .sign-up__title регистрация
             
             form.sign-up__form(
-                @submit.prevent="hasCode ? sendCode() : sendPhone()"
+                @submit.prevent="hasCode ? signUp() : sendPhone()"
             )
                 .sign-up__form-group
                     div.sign-up__input-wrapper
@@ -170,6 +170,7 @@
                                 type="text"
                                 placeholder="Введите код из сообщения"
                                 v-model="userData.code"
+                                v-focus
                             )   
                             button.button(
                                 type="submit"
@@ -200,15 +201,15 @@ export default {
         return {
 
             userData: {
-                phone: '',
-                password: '',
-                passwordRepeat: '',
+                phone: '79523091773',
+                password: 'qweqwe',
+                passwordRepeat: 'qweqwe',
                 email: '',
                 additionalPhone: '',
                 region: '',
                 city: '',
                 address: '',
-                name: '',
+                name: 'Антон',
                 surname: '',
                 patronimic: '',
                 organization: '',
@@ -216,7 +217,7 @@ export default {
                 inn: '',
                 ogrn: '',
                 category: 'Физическое лицо',
-                agree: false,
+                agree: !false,
                 code: ''
             },
 
@@ -277,39 +278,42 @@ export default {
             if ( this.pending ) return;
 
             const isValide = this.validateAll();
-
             if ( !isValide ) return;
 
             this.pending = true;
 
             const data = { phone: this.userData.phone };
+
             api.sendPhone(data)
-                .then(jwt => {
-                    console.log(jwt)
-                    localStorage.setItem('auth-jwt', JSON.stringify(jwt));
+                .then(authJwt => {
+                    localStorage.setItem('auth-jwt', JSON.stringify(authJwt));
                     this.pending = false;
                     this.hasCode = true;
                 }).catch(error => {
-                    if (error.expected) this.$noty('error', error.message);
+                    if (error.exception) {
+                        this.$noty('error', error.exception);
+                        this.hasCode = true;
+                        this.pending = false;
+                    }
                 });
-
         },
 
-        sendCode() {
+        signUp() {
 
             if ( this.pending ) return
 
             this.pending = true;
 
-            // setTimeout(() => {       
-            //     this.pending = false;
-            // }, 1000);
-            const data = { code: this.userData.code };
-            api.sendSmsCode();
-        },
+            const data = this.collectUserData;
+            api.sendSmsCode(data)
+                .then(jwt => {
+                    if ( jwt.accessToken ) localStorage.setItem('jwt', JSON.stringify(jwt));
+                    this.hasCode = true;
+                }).catch(error => {
+                    if (error.exception) this.$noty('error', error.exception);                  
+                });
 
-        sendUserData() {
-            api.sendUserData();
+            this.pending = false;
         },
 
         validateAll() {
@@ -323,11 +327,23 @@ export default {
 
             return isValide;
         },
+
+
     },
 
     computed: {
         isDisabled() {
             return this.pending || this.hasCode;
+        },
+
+        collectUserData() {
+            const data = {};
+            for ( let key in this.userData ) {
+                if ( this.userData[key] === '' ) continue;
+                if ( key === 'passwordRepeat' ) continue;
+                data[key] = this.userData[key];
+            }
+            return data;
         }
     }
     

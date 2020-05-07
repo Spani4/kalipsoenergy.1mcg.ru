@@ -33,7 +33,7 @@ export default {
 
     data() {
         return {
-            registered: true,
+            registered: !true,
             passwordLost: false,
         }
     },

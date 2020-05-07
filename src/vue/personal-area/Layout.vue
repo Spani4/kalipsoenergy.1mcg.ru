@@ -32,17 +32,23 @@ export default {
 
         const token = localStorage.getItem('jwt');
 
-        if ( !token ) {
+        // if ( !token ) {
             this.activeComponent = 'sign';
+        // }
 
-        }
-
-        api.getSmsApi()
+        api.fetchSmsApi()
             .then(data => {
                 this.$store.commit('setSiteKey', data.siteKey);
             }).catch(error => { 
-                if (error.expected) this.$noty('error', error.message);                  
+                if (error.exception) this.$noty('error', error.exception);                  
             });
+
+        api.fetchUser()
+            // .then(response => {
+            //     console.log(response.data)
+            // }).catch(error => { 
+            //     if (error.exception) this.$noty('error', error.exception);                  
+            // });
     }
 
 
