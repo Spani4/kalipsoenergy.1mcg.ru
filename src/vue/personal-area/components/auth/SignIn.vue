@@ -74,9 +74,19 @@ export default {
             }
 
             const errors = Object.values(this.errors);
+            const data = {
+                phone: this.phone,
+                password: this.password
+            };
 
             if ( errors.every(error => error === false)) {
-                api.signIn();
+                api.signIn(data)
+                    .then(jwt => {
+                        localStorage.setItem('jwt', JSON.stringify(jwt));
+                        this.$emit('success');
+                    }).catch(error => {
+                        if (error.exception) this.$noty('error', error.exception);                  
+                    });
             }
         }
     }

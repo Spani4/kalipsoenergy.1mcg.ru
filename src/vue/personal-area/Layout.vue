@@ -7,19 +7,23 @@
                         @click="$root.toggle"
                     ) &times;
                 .personal-area__body
-                    component(:is="activeComponent")
+                    //- component(:is="activeComponent")
+                    account(v-if="isLogged")
+                    sign(v-else)
 </template>
 
 
 
 <script>
 import Sign from './components/auth/Sign.vue';
+import Account from './components/Account.vue';
 import * as api from '../../js/api';
 
 export default {
 
     components: {
         Sign,
+        Account,
     },
 
     data() {
@@ -28,13 +32,13 @@ export default {
         }
     },
 
+    computed: {
+        isLogged() {
+            return this.$store.state.user !== null;
+        }
+    },
+
     created() {
-
-        const token = localStorage.getItem('jwt');
-
-        // if ( !token ) {
-            this.activeComponent = 'sign';
-        // }
 
         api.fetchSmsApi()
             .then(data => {
@@ -43,12 +47,17 @@ export default {
                 if (error.exception) this.$noty('error', error.exception);                  
             });
 
-        api.fetchUser()
-            // .then(response => {
-            //     console.log(response.data)
-            // }).catch(error => { 
-            //     if (error.exception) this.$noty('error', error.exception);                  
-            // });
+        
+        const tokenJson = localStorage.getItem('jwt');
+        if ( !tokenJson ) return
+        
+        const token = JSON.parse(tokenJson);
+
+        if ( !token.accessToken ) {
+            localStorage.removeItem('jwt');
+        } else {
+            this.$store.dispatch('fetchUser');
+        }
     }
 
 

@@ -4,12 +4,14 @@
 
         sign-up(
             v-if="registered === false"
+            @success=""
         )
 
         sign-in(
             v-if="!passwordLost && registered"
             @switchToSignUp="registered = false"
             @switchToPassowrdRecovery="passwordLost = true"
+            @success=""
         )
 
         password-recovery(
@@ -33,7 +35,7 @@ export default {
 
     data() {
         return {
-            registered: !true,
+            registered: true,
             passwordLost: false,
         }
     },

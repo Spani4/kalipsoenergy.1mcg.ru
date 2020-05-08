@@ -17,7 +17,11 @@ export function fetchSmsApi() {
 export function sendPhone(data) {
     
     return axios.post(links.codeSender, data)
-        .then(res => res.data)
+        .then(res => {
+            const jwt = res.data;
+            if ( !jwt.accessToken ) throw { exception: 'Произошла ошибка' };
+            return jwt;
+        })
         .catch(error => {
             throw handleError(error, 'Failed to send phone');
         })
@@ -39,12 +43,24 @@ export function sendSmsCode(data) {
         })
 }
 
+export function signIn(data) {
+
+    return axios.post(links.passwordVerifier, data)
+        .then(res => {
+            const jwt = res.data;
+            if ( !jwt.accessToken ) throw { exception: 'Произошла ошибка' };
+            return jwt;
+        }).catch(error => {
+            throw handleError(error, 'Failed to sign in..');
+        })
+}
+
+
 export function fetchUser() {
 
     return authxios.get(links.user)
         .then(response => {
             console.warn('fetchUser 1');
-            console.log(response);
             return response.data;
         }).catch(error => {
             throw handleError(error, 'Failed to fetch user');
@@ -55,10 +71,6 @@ export function fetchUser() {
 
 
 
-
-export function signIn(data) {
-    console.log('sign in');
-}
 
 export const passwordRecovery = {
     sendPhone,

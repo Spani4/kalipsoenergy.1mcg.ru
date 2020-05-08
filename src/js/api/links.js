@@ -5,6 +5,13 @@ export default {
 	authSms: `${origin}/api/auth/sms`,
 	codeSender: `${origin}/api/auth/sms/code-sender`,
 	codeVerifier: `${origin}/api/auth/sms/code-verifier`,
+
+	authPassword: `${origin}/api/auth/password`,
+	passwordVerifier: `${origin}/api/auth/password/password-verifier`,
+	forgotPasswordCodeSender: `${origin}/api/auth/password/forgot-password/code-sender`,
+	forgotPasswordCodeVerifier: `${origin}/api/auth/password/forgot-password/code-verifier`,
+	forgotPasswordResetPassword: `${origin}/api/auth/password/forgot-password/reset-password`,
+
 	user: `${origin}/api/user`,
 	
 	// cart: `${document.location.origin}/api/cart`,

@@ -201,15 +201,15 @@ export default {
         return {
 
             userData: {
-                phone: '79523091773',
-                password: 'qweqwe',
-                passwordRepeat: 'qweqwe',
+                phone: '',
+                password: '',
+                passwordRepeat: '',
                 email: '',
                 additionalPhone: '',
                 region: '',
                 city: '',
                 address: '',
-                name: 'Антон',
+                name: '',
                 surname: '',
                 patronimic: '',
                 organization: '',
@@ -217,7 +217,7 @@ export default {
                 inn: '',
                 ogrn: '',
                 category: 'Физическое лицо',
-                agree: !false,
+                agree: false,
                 code: ''
             },
 
@@ -273,6 +273,18 @@ export default {
             }
         },
 
+        validateAll() {
+            const fieldsToValidate = Object.keys(this.userData);
+
+            fieldsToValidate.forEach(field => {
+                this.validate(field);
+            });
+
+            const isValide = Object.values(this.errors).every(error => error === false)
+
+            return isValide;
+        },
+
         sendPhone() {
 
             if ( this.pending ) return;
@@ -287,47 +299,36 @@ export default {
             api.sendPhone(data)
                 .then(authJwt => {
                     localStorage.setItem('auth-jwt', JSON.stringify(authJwt));
-                    this.pending = false;
                     this.hasCode = true;
                 }).catch(error => {
                     if (error.exception) {
                         this.$noty('error', error.exception);
-                        this.hasCode = true;
-                        this.pending = false;
+
+                        if ( error.exception != 'Пользователь с таким номером телефона уже существует' )
+                            this.hasCode = true;
                     }
+                }).finally(() => {
+                    this.pending = false;
                 });
         },
 
         signUp() {
 
             if ( this.pending ) return
-
             this.pending = true;
 
             const data = this.collectUserData;
+
             api.sendSmsCode(data)
                 .then(jwt => {
-                    if ( jwt.accessToken ) localStorage.setItem('jwt', JSON.stringify(jwt));
-                    this.hasCode = true;
+                    localStorage.setItem('jwt', JSON.stringify(jwt));
+                    this.$emit('success');
                 }).catch(error => {
                     if (error.exception) this.$noty('error', error.exception);                  
                 });
 
             this.pending = false;
         },
-
-        validateAll() {
-            const fieldsToValidate = Object.keys(this.userData);
-
-            fieldsToValidate.forEach(field => {
-                this.validate(field);
-            });
-
-            const isValide = Object.values(this.errors).every(error => error === false)
-
-            return isValide;
-        },
-
 
     },
 

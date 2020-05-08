@@ -51,7 +51,7 @@ class Authxios {
         return axios(params)
             .then(response => {
 
-                console.warn('sendRequest 1st then');
+                console.warn('sendRequest then');
                 return response.data;
 
             }).catch(error => {
@@ -62,11 +62,15 @@ class Authxios {
                     refreshToken(token, key).then(() => {
                         return this.sendRequest(params, key)
                             .then(response =>  response.data);
-                    })
+                    }).catch(error => {
+                        if ( error.serviceMessage && error.serviceMessage == 'Failed to refresh token' ) {
+                            localStorage.removeItem(key);
+                            throw handleError(new AuthError("Вы не авторизованы"));
+                        }
+                    });
+                } else {
+                    throw handleError(error, 'Unexpected sendRequest error');
                 }
-                console.warn('Error in sendRequest');
-                console.dir(error);
-                // throw handleError(error);
             })    
     }
 
@@ -81,7 +85,7 @@ export function refreshToken(token, key) {
 
     return axios.post(link)
         .then(response => {
-            console.warn('refreshToken 1st then');
+            console.warn('refreshToken then');
             localStorage.setItem(key, JSON.stringify(response.data));
             return;
         }).catch(error => {
@@ -90,5 +94,7 @@ export function refreshToken(token, key) {
             throw handleError(error, 'Failed to refresh token');
         })
 }
+
+
 
 export const authxios = new Authxios();
