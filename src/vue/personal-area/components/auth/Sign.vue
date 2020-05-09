@@ -4,18 +4,19 @@
 
         sign-up(
             v-if="registered === false"
-            @success=""
+            @success="$store.dispatch('fetchUser')"
         )
 
         sign-in(
             v-if="!passwordLost && registered"
             @switchToSignUp="registered = false"
             @switchToPassowrdRecovery="passwordLost = true"
-            @success=""
+            @success="$store.dispatch('fetchUser')"
         )
 
         password-recovery(
             v-if="passwordLost"
+            @success="$store.dispatch('fetchUser')"
         )
     
 </template>
@@ -39,28 +40,5 @@ export default {
             passwordLost: false,
         }
     },
-
-    methods: {
-        test() {
-            console.log('test');
-        }
-    }
 }
 </script>
-
-
-<style lang="scss" scoped>
-.fade-enter {
-    opacity: 0;
-}
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity .2s;
-}
-.fade-enter-to {
-    opacity: 1;
-}
-.fade-leave-to  {
-    opacity: 0;
-}
-</style>

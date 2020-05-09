@@ -2,14 +2,16 @@
     .personal-area(v-if="$root.show")
         .wrapper 
             .personal-area__window
+
                 .personal-area__head личный кабинет&nbsp;&nbsp;&nbsp;
                     button.personal-area__close-btn(
                         @click="$root.toggle"
                     ) &times;
                 .personal-area__body
-                    //- component(:is="activeComponent")
-                    account(v-if="isLogged")
-                    sign(v-else)
+                    transition(name="fade", mode="out-in")
+                        //- component(:is="activeComponent")
+                        account(v-if="isLogged")
+                        sign(v-else)
 </template>
 
 
@@ -17,7 +19,7 @@
 <script>
 import Sign from './components/auth/Sign.vue';
 import Account from './components/Account.vue';
-import * as api from '../../js/api';
+import * as API from '~/js/api';
 
 export default {
 
@@ -40,7 +42,7 @@ export default {
 
     created() {
 
-        api.fetchSmsApi()
+        API.auth.fetchSmsApi()
             .then(data => {
                 this.$store.commit('setSiteKey', data.siteKey);
             }).catch(error => { 

@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import PhoneInput from '../personal-area/components/auth/PhoneInput.vue';
+import PhoneInput from '~/vue/common-components/PhoneInput.vue';
 
 export default {
     components: {

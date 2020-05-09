@@ -5,6 +5,8 @@ class AuthError extends Error {
     constructor(message) {
         super(message);
         this.name = "AuthError";
+
+        //simulating exception:
         this.errors = [];
         this.errors.push(this.message);
     }
@@ -44,7 +46,7 @@ class Authxios {
         const token = JSON.parse(jsonJwt);
         
         const link = new URL(params.url);
-        link.searchParams.set(key, token.accessToken);
+        link.searchParams.set('jwt', token.accessToken);
         params.url = link.href;
 
 
@@ -52,7 +54,7 @@ class Authxios {
             .then(response => {
 
                 console.warn('sendRequest then');
-                return response.data;
+                return response;
 
             }).catch(error => {
                 
@@ -61,7 +63,7 @@ class Authxios {
                 if ( error.response.status == 409 ) {
                     refreshToken(token, key).then(() => {
                         return this.sendRequest(params, key)
-                            .then(response =>  response.data);
+                            .then(response => response);
                     }).catch(error => {
                         if ( error.serviceMessage && error.serviceMessage == 'Failed to refresh token' ) {
                             localStorage.removeItem(key);

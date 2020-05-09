@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import * as api from '../js/api';
-import showNoty from '../js/utils/showNoty';
+import * as api from '~/js/api';
+import noty from '~/js/components/noty';
 
 
 Vue.use(Vuex);
@@ -17,10 +17,10 @@ export default new Vuex.Store({
     actions: {
         fetchUser({ commit }) {
             api.fetchUser()
-                .then(response => {
-                    commit('setUser', response.data);
+                .then(user => {
+                    commit('setUser', user);
                 }).catch(error => { 
-                    if (error.exception) showNoty('error', error.exception);    
+                    if (error.exception) noty('error', error.exception);    
                 });
         },
     },

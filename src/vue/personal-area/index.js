@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Layout from './Layout.vue';
-import store from '../../store';
-import showNoty from '../../js/utils/showNoty';
+import store from '~/store';
+import noty from '~/js/components/noty';
+import { VueNoty } from '~/js/components/noty';
 
 //directives
 Vue.directive('focus', {
@@ -10,7 +11,7 @@ Vue.directive('focus', {
     }
 })
 
-Vue.prototype.$noty = showNoty;
+Vue.use(VueNoty);
 
 
 export default class PersonalArea {

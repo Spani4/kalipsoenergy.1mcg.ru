@@ -7,16 +7,23 @@ export default function(error, consoleMessage = 'Unexpected Error') {
     console.error(error);
     console.dir(error);
 
-    if ( !error.response ) return error;
-
-    switch ( error.response.status ) {
-
-        case 409:
-        case 422: {
-            error.exception = error.response.data.errors[0].message;
-        }
-            break;
+    try {
+        error.exception = error.response.data.errors[0].message;
+    } catch {
+        return error;
     }
+
+
+    // if ( !error.response ) return error;
+
+    // switch ( error.response.status ) {
+
+    //     case 409:
+    //     case 422: {
+    //         error.exception = error.response.data.errors[0].message;
+    //     }
+    //         break;
+    // }
 
     return error; 
 }

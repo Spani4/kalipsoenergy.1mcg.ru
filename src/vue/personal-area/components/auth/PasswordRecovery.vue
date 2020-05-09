@@ -55,7 +55,7 @@
                 form.sign-in__form(
                     :key="step"
                     v-if="step == 'newPassword'"
-                    @submit.prevent="sendPassword"
+                    @submit.prevent="sendNewPassword"
                 )
                     .sign-in__text Пожалуйста, придумайте новый пароль
                     .sign-in__text Длина пароля должна составлять от 6 до 20 символов
@@ -87,9 +87,9 @@
 
 <script>
 
-import PhoneInput from './PhoneInput.vue';
+import PhoneInput from '~/vue/common-components/PhoneInput.vue';
 
-import * as api from '../../../../js/api';
+import * as API from '~/js/api';
 
 export default {
     components: {
@@ -137,55 +137,62 @@ export default {
         },
 
         sendPhone() {
+
             this.validate(this.step);
             if ( this.errors.phone !== false ) return;
 
-            api.passwordRecovery.sendPhone();
-
+            const data = { phone: this.phone };
             this.pending = true;
 
-            setTimeout(() => {       
-                this.pending = false;
-                this.nextStep();
-            }, 900);
-
+            API.recovery.sendPhone(data, 'recovery-jwt')
+                .then(jwt => {
+                    this.pending = false;
+                    this.nextStep();
+                }).catch(error => {
+                    if (error.exception) this.$noty('error', error.exception);                  
+                });    
         },
 
         sendCode() {
+
             this.validate(this.step);
             if ( this.errors.code !== false ) return;
 
-            api.passwordRecovery.sendSmsCode();
-
+            const data = { code: this.code };
             this.pending = true;
 
-            setTimeout(() => {       
-                this.pending = false;
-                this.nextStep();
-            }, 900);
-            
+            API.recovery.sendSmsCode(data, 'recovery-jwt')
+                .then(jwt => {
+                    this.pending = false;
+                    this.nextStep();
+                }).catch(error => {
+                    if (error.exception) this.$noty('error', error.exception);                  
+                });            
         },
 
-        sendPassword() {
+        sendNewPassword() {
+
             this.validate(this.step);
             if ( this.errors.passwords !== false ) return;
 
-            api.passwordRecovery.sendNewPassword();
-
+            const data = { password: this.newPassword };
             this.pending = true;
 
-            setTimeout(() => {       
-                this.pending = false;
-            }, 900);
+            API.recovery.sendNewPassword(data, 'recovery-jwt')
+                .then(jwt => {
+                    this.pending = false;
+                    this.$emit('success');
+                    this.resetSteps();
+                }).catch(error => {
+                    if (error.exception) this.$noty('error', error.exception);                  
+                });              
+
+       
         },
 
-        nextStep() {
-            this.stepIndex++;
-        },
-
-        prevStep() {
-            this.stepIndex--;            
-        }
+        nextStep() { this.stepIndex++ },
+        prevStep() { this.stepIndex-- },
+        resetSteps() { this.stepIndex = 0 },
     },
 
     computed: {
@@ -196,20 +203,3 @@ export default {
     
 }
 </script>
-
-<style lang="scss">
-
-.fade-enter {
-    opacity: 0;
-}
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity .2s;
-}
-.fade-enter-to {
-    opacity: 1;
-}
-.fade-leave-to  {
-    opacity: 0;
-}
-</style>

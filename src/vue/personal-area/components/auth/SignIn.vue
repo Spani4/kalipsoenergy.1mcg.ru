@@ -38,9 +38,8 @@
 </template>
 
 <script>
-import PhoneInput from './PhoneInput.vue';
-
-import * as api from '../../../../js/api';
+import PhoneInput from '~/vue/common-components/PhoneInput.vue';
+import * as API from '~/js/api';
 
 export default {
     components: {
@@ -80,9 +79,8 @@ export default {
             };
 
             if ( errors.every(error => error === false)) {
-                api.signIn(data)
+                API.auth.signIn(data)
                     .then(jwt => {
-                        localStorage.setItem('jwt', JSON.stringify(jwt));
                         this.$emit('success');
                     }).catch(error => {
                         if (error.exception) this.$noty('error', error.exception);                  

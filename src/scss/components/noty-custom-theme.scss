@@ -1,63 +1,88 @@
+$bg-success: #5B9E27;
+$font-success: #fff;
+$border-success: mix($bg-success, #000, 75%);
+
+$bg-warn: #FFE04A;
+$font-warn: #333;
+$border-warn: mix($bg-warn, #000, 75%);
+
+$bg-error: #CA1313;
+$font-error: #fff;
+$border-error: mix($bg-error, #000, 75%);
+
+$bg-info: #EEE;
+$font-info: #333;
+$border-info: mix($bg-info, #000, 75%);
+
+$bg-alert: #EEE;
+$font-alert: #333;
+$border-alert: mix($bg-alert, #000, 75%);
+
+
 .noty_theme__custom.noty_bar {
-  margin: 4px 0;
-  overflow: hidden;
-  border-radius: 2px;
-  position: relative;
+    margin: 4px 0;
+    overflow: hidden;
+    border-radius: 2px;
+    position: relative;
 
-  .noty_body {
-	padding: 10px;
-  }
+    .noty_body {
+        padding: 15px;
+    }
 
-  .noty_buttons {
-	border-top: 1px solid #e7e7e7;
-	padding: 5px 10px;
-  }
+    .noty_buttons {
+        border-top: 1px solid #e7e7e7;
+        padding: 5px 10px;
+    }
 }
 
 .noty_theme__custom.noty_type__alert,
 .noty_theme__custom.noty_type__notification {
-  background-color: #fff;
-  border: 1px solid #dedede;
-  color: #444;
+    background-color: $bg-alert;
+    border: 1px solid $border-alert;
+    color: $font-alert;
+
+    .noty_buttons {
+        border-color: $border-alert;
+    }
 }
 
 .noty_theme__custom.noty_type__warning {
-  background-color: #FFEAA8;
-  border: 1px solid #FFC237;
-  color: #826200;
+    background-color: $bg-warn;
+    border: 1px solid $border-warn;
+    color: $font-warn;
 
-  .noty_buttons {
-	border-color: #dfaa30;
-  }
+    .noty_buttons {
+        border-color: $border-warn;
+    }
 }
 
 .noty_theme__custom.noty_type__error {
-  background-color: #FF8181;
-  border: 1px solid #e25353;
-  color: #FFF;
+    background-color: $bg-error;
+    border: 1px solid $border-error;
+    color: $font-error;
 
-  .noty_buttons {
-	border-color: darkred;
-  }
+    .noty_buttons {
+        border-color: $border-error;
+    }
 }
 
 .noty_theme__custom.noty_type__info,
 .noty_theme__custom.noty_type__information {
-  background-color: #78C5E7;
-  border: 1px solid #3badd6;
-  color: #FFF;
+    background-color: $bg-info;
+    border: 1px solid $border-info;
+    color: $font-info;
 
-  .noty_buttons {
-	border-color: #0B90C4;
-  }
+    .noty_buttons {
+        border-color: $border-info;
+    }
 }
 
 .noty_theme__custom.noty_type__success {
-  background-color: #BCF5BC;
-  border: 1px solid #7cdd77;
-  color: darkgreen;
+    background-color: $bg-success;
+    border: 1px solid $border-success;
+    color: $font-success;
 
-  .noty_buttons {
-	border-color: #50C24E;
-  }
+    .noty_buttons {
+        border-color: $border-success;
+    }
 }

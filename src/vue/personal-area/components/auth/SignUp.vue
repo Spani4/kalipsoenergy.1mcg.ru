@@ -42,16 +42,16 @@
                         :disabled="isDisabled"
                         v-model="userData.email"
                     )
-                    input.form-input(
-                        v-model="userData.additionalPhone"
-                        :placeholder="'Дополнительный телефон'"
-                        :disabled="isDisabled"
-                    )
-                    //- phone-input(
+                    //- input.form-input(
                     //-     v-model="userData.additionalPhone"
                     //-     :placeholder="'Дополнительный телефон'"
-                            :isDisabled="isDisabled"
+                    //-     :disabled="isDisabled"
                     //- )
+                    phone-input(
+                        v-model="userData.additionalPhone"
+                        :placeholder="'Дополнительный телефон'"
+                        :isDisabled="isDisabled"
+                    )
 
                 .sign-up__form-group
                     input.form-input(
@@ -88,7 +88,7 @@
                 .sign-up__form-group
                     .sign-up__form-group-title Категория
                     label.sign-up__category.custom-radio(
-                        v-for="item in categories"
+                        v-for="(item, i) in categories"
                         :class="{ disabled: isDisabled }"
                     )
                         input.custom-radio__input(
@@ -188,8 +188,8 @@
 </template>
 
 <script>
-import PhoneInput from './PhoneInput.vue';
-import * as api from '../../../../js/api';
+import PhoneInput from '~/vue/common-components/PhoneInput.vue';
+import * as API from '~/js/api';
 
 export default {
     
@@ -296,9 +296,8 @@ export default {
 
             const data = { phone: this.userData.phone };
 
-            api.sendPhone(data)
+            API.auth.sendPhone(data)
                 .then(authJwt => {
-                    localStorage.setItem('auth-jwt', JSON.stringify(authJwt));
                     this.hasCode = true;
                 }).catch(error => {
                     if (error.exception) {
@@ -319,9 +318,8 @@ export default {
 
             const data = this.collectUserData;
 
-            api.sendSmsCode(data)
+            API.auth.signUp(data)
                 .then(jwt => {
-                    localStorage.setItem('jwt', JSON.stringify(jwt));
                     this.$emit('success');
                 }).catch(error => {
                     if (error.exception) this.$noty('error', error.exception);                  
@@ -350,20 +348,3 @@ export default {
     
 }
 </script>
-
-
-<style lang="scss" scoped>
-.fade-enter {
-    opacity: 0;
-}
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity .1s;
-}
-.fade-enter-to {
-    opacity: 1;
-}
-.fade-leave-to  {
-    opacity: 0;
-}
-</style>
