@@ -41,27 +41,8 @@ export default {
     },
 
     created() {
-
-        API.auth.fetchSmsApi()
-            .then(data => {
-                this.$store.commit('setSiteKey', data.siteKey);
-            }).catch(error => { 
-                if (error.exception) this.$noty('error', error.exception);                  
-            });
-
-        
-        const tokenJson = localStorage.getItem('jwt');
-        if ( !tokenJson ) return
-        
-        const token = JSON.parse(tokenJson);
-
-        if ( !token.accessToken ) {
-            localStorage.removeItem('jwt');
-        } else {
-            this.$store.dispatch('fetchUser');
-        }
+        this.$store.dispatch('fetchSmsApi');
+        this.$store.dispatch('fetchUser');
     }
-
-
 }
 </script>

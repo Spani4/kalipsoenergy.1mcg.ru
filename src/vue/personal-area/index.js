@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Layout from './Layout.vue';
 import store from '~/store';
-import noty from '~/js/components/noty';
 import { VueNoty } from '~/js/components/noty';
 
 //directives

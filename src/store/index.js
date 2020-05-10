@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import * as api from '~/js/api';
+import * as API from '~/js/api';
 import noty from '~/js/components/noty';
 
 
@@ -15,8 +15,17 @@ export default new Vuex.Store({
     },
 
     actions: {
+        fetchSmsApi({ commit }) {
+            API.auth.fetchSmsApi()
+                .then(data => {
+                    commit('setSiteKey', data.siteKey);
+                }).catch(error => {
+                    if (error.exception) noty('error', error.exception);
+                });
+        },
+
         fetchUser({ commit }) {
-            api.fetchUser()
+            API.fetchUser()
                 .then(user => {
                     commit('setUser', user);
                 }).catch(error => { 

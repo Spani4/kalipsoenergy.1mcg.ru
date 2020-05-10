@@ -1,7 +1,7 @@
 import axios from 'axios';
 import links from './links';
 import handleError from './error';
-import { authxios, refreshToken } from './authxios';
+import authxios from './authxios';
 
 
 function handleResponse(response, key) {
@@ -44,7 +44,7 @@ export function sendSmsCode(data, key = 'auth-jwt') {
 
     const url = links.codeVerifier;
 
-    return authxios.post(url, data, key)
+    return authxios.post(url, data, {key})
         .then(response => {
             handleResponse(response, 'jwt')
             localStorage.removeItem(key);

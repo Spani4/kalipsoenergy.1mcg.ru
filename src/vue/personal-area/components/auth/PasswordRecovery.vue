@@ -146,10 +146,11 @@ export default {
 
             API.recovery.sendPhone(data, 'recovery-jwt')
                 .then(jwt => {
-                    this.pending = false;
                     this.nextStep();
                 }).catch(error => {
                     if (error.exception) this.$noty('error', error.exception);                  
+                }).finally(() => {
+                    this.pending = false;
                 });    
         },
 
@@ -163,10 +164,11 @@ export default {
 
             API.recovery.sendSmsCode(data, 'recovery-jwt')
                 .then(jwt => {
-                    this.pending = false;
                     this.nextStep();
                 }).catch(error => {
                     if (error.exception) this.$noty('error', error.exception);                  
+                }).finally(() => {
+                    this.pending = false;
                 });            
         },
 
@@ -180,11 +182,12 @@ export default {
 
             API.recovery.sendNewPassword(data, 'recovery-jwt')
                 .then(jwt => {
-                    this.pending = false;
                     this.$emit('success');
                     this.resetSteps();
                 }).catch(error => {
                     if (error.exception) this.$noty('error', error.exception);                  
+                }).finally(() => {
+                    this.pending = false;
                 });              
 
        

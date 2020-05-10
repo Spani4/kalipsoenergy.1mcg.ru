@@ -8,7 +8,7 @@ let defaults = {
     type: 'information',
     text: '',
     timeout: 5000,
-    progressBar: false,
+    progressBar: true,
     closeWith: ['click', 'button'],
 }
 

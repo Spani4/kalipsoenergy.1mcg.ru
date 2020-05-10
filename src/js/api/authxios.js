@@ -1,102 +1,89 @@
 import axios from 'axios';
-import handleError from './error';
 
 class AuthError extends Error {
     constructor(message) {
         super(message);
         this.name = "AuthError";
-
-        //simulating exception:
-        this.errors = [];
-        this.errors.push(this.message);
     }
 }
 
+function getUrl(config) {
 
-class Authxios {
+    let key = config.key ? config.key : 'jwt';
+    let token = JSON.parse(localStorage.getItem(key));
+    let url = new URL(config.url);
 
-    get(url, key='jwt') {
-        const params = {
-            method: 'get',
-            url,
-        };
+    url.searchParams.set('jwt', token.accessToken);
 
-        return this.sendRequest(params, key);
-    }
-
-    post(url, data, key='jwt') {
-
-        const params = {
-            method: 'post',
-            url,
-            data,
-        };
-
-        return this.sendRequest(params, key);
-    }
-
-    sendRequest(params, key='jwt') {
-
-        console.warn('Start sending request');
-
-        const jsonJwt = localStorage.getItem(key);
-
-        if ( !jsonJwt ) throw handleError(new AuthError("Вы не авторизованы"));
-    
-        const token = JSON.parse(jsonJwt);
-        
-        const link = new URL(params.url);
-        link.searchParams.set('jwt', token.accessToken);
-        params.url = link.href;
-
-
-        return axios(params)
-            .then(response => {
-
-                console.warn('sendRequest then');
-                return response;
-
-            }).catch(error => {
-                
-                console.warn('sendRequest catch')
-
-                if ( error.response.status == 409 ) {
-                    refreshToken(token, key).then(() => {
-                        return this.sendRequest(params, key)
-                            .then(response => response);
-                    }).catch(error => {
-                        if ( error.serviceMessage && error.serviceMessage == 'Failed to refresh token' ) {
-                            localStorage.removeItem(key);
-                            throw handleError(new AuthError("Вы не авторизованы"));
-                        }
-                    });
-                } else {
-                    throw handleError(error, 'Unexpected sendRequest error');
-                }
-            })    
-    }
-
+    return url;
 }
 
-export function refreshToken(token, key) {
+
+function refreshToken(key = 'jwt') {
     
     console.warn('Refreshing token');
     
-    const link = new URL(token._links.refresher.href);
-    link.searchParams.set('token', token.refreshToken);
-
-    return axios.post(link)
+    const token = JSON.parse(localStorage.getItem(key))
+    const url = new URL(token._links.refresher.href);
+    url.searchParams.set('token', token.refreshToken);
+    
+    return axios.post(url)
         .then(response => {
-            console.warn('refreshToken then');
             localStorage.setItem(key, JSON.stringify(response.data));
             return;
         }).catch(error => {
-            console.warn('refreshToken catch');
-            console.dir(error)
-            throw handleError(error, 'Failed to refresh token');
+            if ( error.response.status == 409 ) localStorage.removeItem(key);
+            throw AuthError('Failed to refresh token');
         })
 }
 
 
+const authxios = axios.create({});
 
-export const authxios = new Authxios();
+authxios.refresh = refreshToken;
+
+authxios.interceptors.request.use(config => {
+    
+    if (config.url.searchParams && config.url.searchParams.has('jwt')) return config;
+
+    if ( !config.key ) config.key = 'jwt';
+
+    try { config.url = getUrl(config) }
+    catch { throw new AuthError("Token does not exist") }
+
+    return config;
+})
+
+
+authxios.interceptors.response.use(response => {
+
+    return response;
+    
+}, error => {
+
+    if (!error.response ) throw error;
+    
+    if (error.response.status == 409) {
+        
+        let config = error.config;
+        let key = config.key;
+
+        return authxios.refresh(key).then(() => {
+
+            config.url = getUrl(config);
+
+            return authxios(config, { key })
+                .then(response => {
+                    return response;
+                });
+        }).catch(error => {
+            throw error;
+        });
+
+    } else {
+        throw error;
+    }
+});
+
+
+export default authxios;

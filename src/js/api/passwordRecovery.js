@@ -1,7 +1,7 @@
 import axios from 'axios';
 import links from './links';
 import handleError from './error';
-import { authxios } from './authxios';
+import authxios from './authxios';
 
 
 function handleResponse(response, key) {
@@ -33,7 +33,7 @@ export function sendSmsCode(data, key = 'recovery-jwt') {
 
     const url = links.forgotPasswordCodeVerifier;
 
-    return authxios.post(url, data, key)
+    return authxios.post(url, data, { key })
         .then(response => {
             handleResponse(response, key);
             return;
@@ -46,7 +46,7 @@ export function sendNewPassword(data, key = 'recovery-jwt') {
 
     const url = links.forgotPasswordResetPassword;
 
-    return authxios.post(url, data, key)
+    return authxios.post(url, data, { key })
         .then(response => {
             handleResponse(response, 'jwt');
             localStorage.removeItem(key);

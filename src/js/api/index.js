@@ -1,7 +1,7 @@
 import axios from 'axios';
 import links from './links';
 import handleError from './error';
-import { authxios, refreshToken} from './authxios';
+import authxios from './authxios';
 import * as passwordRecovery from './passwordRecovery';
 import * as authApi from './auth';
 
@@ -11,12 +11,13 @@ export const recovery = passwordRecovery;
 
 export function fetchUser() {
 
-    return authxios.get(links.user)
-        .then(response => {
-            if ( response.status == 200 ) return response.data;
-        }).catch(error => {
+    const url = links.user;
+
+    return authxios.get(url)
+        .then(response => response.data)
+        .catch(error => {
             throw handleError(error, 'Failed to fetch user');
-        })    
+        })       
 }
 
 
