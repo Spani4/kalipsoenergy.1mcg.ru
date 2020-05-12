@@ -44,6 +44,8 @@ export default class PersonalArea {
         })
 
         this._initBtns();
+
+        this._vm.toggle();
     }
 
     _initBtns() {

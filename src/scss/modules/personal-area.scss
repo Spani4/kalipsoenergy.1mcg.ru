@@ -1,5 +1,8 @@
 @import "../components/personal-area/sign-in";
 @import "../components/personal-area/sign-up";
+@import "../components/personal-area/account";
+@import "../components/personal-area/user-data";
+@import "../components/personal-area/user-nav";
 @import "../components/vue-transitions";
 
 
@@ -20,6 +23,7 @@
     @include screen(767) {
         padding-top: 80px;
         padding-bottom: 80px;
+        overflow-y: auto;
     }
 
     &::-webkit-scrollbar {
@@ -43,7 +47,7 @@
     &__window {
         @include flex(col);
         position: relative;
-        min-height: 1020px;
+        min-height: 1000px;
         background-color: $bg-color;
     }
 
@@ -89,12 +93,15 @@
     }
 
     &__body {
+        
+        @include flex(row,c);
+        
         flex-grow: 1;
         min-height: 100%;
         padding: 60px 40px 50px;
 
         @include screen(767) {
-            padding: 30px 0 60px;
+            padding: 30px 20px 60px;
         }
     }
 

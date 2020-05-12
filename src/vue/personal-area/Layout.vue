@@ -9,7 +9,6 @@
                     ) &times;
                 .personal-area__body
                     transition(name="fade", mode="out-in")
-                        //- component(:is="activeComponent")
                         account(v-if="isLogged")
                         sign(v-else)
 </template>
@@ -18,7 +17,7 @@
 
 <script>
 import Sign from './components/auth/Sign.vue';
-import Account from './components/Account.vue';
+import Account from './components/account/Account.vue';
 import * as API from '~/js/api';
 
 export default {

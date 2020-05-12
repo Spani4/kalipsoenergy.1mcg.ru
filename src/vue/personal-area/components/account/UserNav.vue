@@ -1,5 +1,5 @@
 <template lang="pug">
-    .container USER ACCOUNT
+    .user-nav USER NAV
 </template>
 
 <script>

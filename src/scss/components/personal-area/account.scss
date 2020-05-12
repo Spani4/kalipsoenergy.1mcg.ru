@@ -1,0 +1,27 @@
+.account {
+
+    flex-grow: 1;
+    width: 100%;
+    margin: 0 -20px;
+
+    
+
+    @include flex(row,s,s);
+
+    &__sidebar {
+
+        @include flex(col,sb);
+        width: 380px;
+        padding: 0 20px;
+
+        background-color: grey;
+    }
+
+    &__content {
+        flex-grow: 1;
+        width: auto;
+        padding: 0 20px;
+
+        background-color: orange;
+    }
+}
