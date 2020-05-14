@@ -1,6 +1,23 @@
 .user-data {
 
-    min-height: 300px;
-    background-color: green;
-    outline: 1px dotted #666;
+    &__data-group {
+        margin-bottom: 20px;
+    }
+
+    &__contacts &__item {
+        font-weight: 300;
+        line-height: 16px;
+    }
+
+    &__item {
+        margin-bottom: 10px;
+        line-height: 150%;
+
+        &.name {
+            font-family: $sans-title;
+            font-size: 18px;
+            line-height: 22px;
+            text-transform: uppercase;
+        }
+    }
 }

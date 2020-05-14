@@ -1,22 +1,22 @@
 <template lang="pug">
     .user-data
-        .user-data__data-group
-            .user-data__item.name {{ userFullName }}
-            .user-data__contacts
-                .user-data__item {{ getFormattedPhone(user.phone) }}
-                .user-data__item(v-if="userProps.email") {{ userProps.email }}
-                .user-data__item(v-if="userProps.additionalPhone") {{ getFormattedPhone(userProps.additionalPhone) }}
+        .user-data__data
+            .user-data__data-group
+                .user-data__item.name {{ userFullName }}
+                .user-data__contacts
+                    .user-data__item Телефон: {{ getFormattedPhone(user.phone) }}
+                    .user-data__item(v-if="userProps.additionalPhone") Доп. телефон: {{ getFormattedPhone(userProps.additionalPhone) }}
+                    .user-data__item(v-if="user.email") E-mail: {{ user.email }}
             template(v-if="isOrganization")
                 .user-data__item(v-if="userProps.organization") {{ userProps.organization }}
                 .user-data__item(v-if="userProps.inn") ИНН: {{ userProps.inn }}
                 .user-data__item(v-if="userProps.ogrn") ОГРН: {{ userProps.ogrn }}
             template(v-else)
                 .user-data__item(v-if="userProps.snils") СНИЛС: {{ userProps.snils }}
-            .user-data__item(v-if="userProps.region") {{ fullAddress }}
-            //- .user-data__item(v-if="userProps.region") {{ userProps.region }}
-            //- .user-data__item(v-if="userProps.city") {{ userProps.city }}
-            //- .user-data__item(v-if="userProps.address") {{ userProps.address }}
-            
+            .user-data__item(v-if="userProps.region") {{ fullAddress }}            
+        .button(
+            @click=""
+        ) изменить данные
         
 </template>
 

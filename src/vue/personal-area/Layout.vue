@@ -10,20 +10,20 @@
                 .personal-area__body
                     transition(name="fade", mode="out-in")
                         account(v-if="isLogged")
-                        sign(v-else)
+                        auth(v-else)
 </template>
 
 
 
 <script>
-import Sign from './components/auth/Sign.vue';
-import Account from './components/account/Account.vue';
+import Auth from './components/auth/Index.vue';
+import Account from './components/account/Index.vue';
 import * as API from '~/js/api';
 
 export default {
 
     components: {
-        Sign,
+        Auth,
         Account,
     },
 

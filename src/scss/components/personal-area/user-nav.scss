@@ -1,6 +1,25 @@
 .user-nav {
 
-    min-height: 300px;
-    background-color: red;
-    outline: 1px dotted #666;
+    text-transform: uppercase;
+    
+    & > * {
+        margin-bottom: 20px;
+        font-family: $sans-title;    
+        font-size: 18px;
+        user-select: none;
+    }
+
+    &__item {
+        @include transition(all);
+        cursor: pointer;
+
+        &.active {
+            color: $font-color-bright;
+        }
+
+        &:hover {
+            opacity: .8;
+        }
+    }
+    
 }
