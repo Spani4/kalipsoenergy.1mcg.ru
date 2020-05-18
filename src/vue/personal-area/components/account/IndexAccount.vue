@@ -1,25 +1,30 @@
 <template lang="pug">
-    .account 
-        .account__sidebar
-            .account__user-data
-                user-data
-            .account__nav
-                user-nav(
-                    :goTo="setActiveComponent"
-                    :active="activeComponent"
+    .account
+        change-user-data(
+            v-if="mode == 'edit-data'"
+            @cancel="mode = 'account'"
+        )
+        template(v-else)
+            .account__sidebar
+                .account__user-data
+                    user-data(
+                        @editUserData="mode = 'edit-data'"
                     )
-        .account__content
-            transition(name="fade" mode="out-in")
-                component(:is="activeComponent")
-        //- change-user-data
+                .account__nav
+                    user-nav(
+                        :goTo="setActiveComponent"
+                        :activeComponent="activeComponent"
+                        )
+            .account__content
+                transition(name="fade" mode="out-in")
+                    component(:is="activeComponent")
 </template>
 
 <script>
 import UserData from './UserData.vue';
 import UserNav from './UserNav.vue';
-import Account from './Index.vue';
 import MyData from './MyData.vue';
-import DownloadsForms from './DownloadsForms.vue';
+import DownloadForms from './DownloadForms.vue';
 import ConnectionApplication from './ConnectionApplication.vue';
 import SendIndications from './SendIndications.vue';
 import Payment from './Payment.vue';
@@ -30,9 +35,8 @@ export default {
     components: {
         UserData,
         UserNav,
-        Account,
         MyData,
-        DownloadsForms,
+        DownloadForms,
         ConnectionApplication,
         SendIndications,
         Payment,
@@ -41,6 +45,8 @@ export default {
 
     data() {
         return {
+            mode: '',
+            modes: ['edit-data', 'account'],
             activeComponent: '',
             contentComponents: ['my-data', 'download-forms', 'connection-application',
                 'send-indications', 'payment', 'change-user-data'],
@@ -52,6 +58,11 @@ export default {
         setActiveComponent(component) {
             this.activeComponent = component;
         },
+    },
+
+    created() {
+        this.activeComponent = 'my-data';
+        this.mode = 'account';
     }
     
 }

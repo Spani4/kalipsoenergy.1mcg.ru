@@ -9,27 +9,27 @@
                     ) &times;
                 .personal-area__body
                     transition(name="fade", mode="out-in")
-                        account(v-if="isLogged")
-                        auth(v-else)
+                        index-account(v-if="isLogged")
+                        index-auth(v-else)
 </template>
 
 
 
 <script>
-import Auth from './components/auth/Index.vue';
-import Account from './components/account/Index.vue';
+import IndexAuth from './components/auth/IndexAuth.vue';
+import IndexAccount from './components/account/IndexAccount.vue';
 import * as API from '~/js/api';
 
 export default {
 
     components: {
-        Auth,
-        Account,
+        IndexAuth,
+        IndexAccount,
     },
 
     data() {
         return {
-            activeComponent: null,
+            // activeComponent: null,
         }
     },
 

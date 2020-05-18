@@ -36,7 +36,9 @@
         &-group:nth-child(1),
         &-group:nth-child(2),
         &-group:nth-child(3),
-        &-group:nth-child(4) {
+        &-group:nth-child(4),
+        &-group:nth-child(5),
+        &-group:nth-child(6) {
             width: 50%;
             order: 1;
             @include screen(767) {
@@ -45,6 +47,9 @@
         }
         &-group:nth-child(5) {
             order: 4;
+        }
+        &-group:nth-child(6) {
+            order: 5;
         }
         &-group:nth-child(3) {
             @include screen(767) {
@@ -64,6 +69,13 @@
 
         &-row {
             @include flex(row,fs,fs);
+            @include screen(767) {
+                flex-direction: column;
+            }
+        }
+
+        &-row-wide {
+            @include flex(row,sb,fs);
             @include screen(767) {
                 flex-direction: column;
             }
@@ -97,5 +109,10 @@
         & * {
             margin-bottom: 5px;
         }
+    }
+
+    .button {
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }

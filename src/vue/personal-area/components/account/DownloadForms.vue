@@ -1,5 +1,5 @@
 <template lang="pug">
-    p DownloadsForms
+    p DownloadForms
 </template>
 
 

@@ -17,8 +17,8 @@
             color: $font-color-bright;
         }
 
-        &:hover {
-            opacity: .8;
+        &:not(.active):hover {
+            opacity: .6;
         }
     }
     

@@ -15,13 +15,16 @@
                 .user-data__item(v-if="userProps.snils") СНИЛС: {{ userProps.snils }}
             .user-data__item(v-if="userProps.region") {{ fullAddress }}            
         .button(
-            @click=""
+            @click="$emit('editUserData')"
         ) изменить данные
         
 </template>
 
 <script>
 export default {
+    // props: {
+    //     goTo: Function,
+    // },
 
     methods: {
         getFormattedPhone(phone) {
