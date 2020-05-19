@@ -8,15 +8,16 @@
             form.sign-up__form(
                 @submit.prevent="hasCode ? signUp() : sendPhone()"
                 )
-                .sign-up__form-group
+                .sign-up__form-group.half
                     div.sign-up__input-wrapper
                         phone-input(
+                            ref="phoneInput"
                             v-model="userData.phone"
                             @focus="errors.phone = false"
                             :isError="errors.phone !== false"
-                            :isDisabled="isDisabled"
+                            :isDisabled="true"
                         )
-                        .required(title="Обязательное поле")
+                        //- .required(title="Обязательное поле")
                     div.sign-up__input-wrapper
                         input.form-input(
                             type="password"
@@ -46,12 +47,13 @@
                     )
 
                     phone-input(
-                        v-model="userData.additionalPhone"
+                        ref="additionalPhoneInput"
                         :placeholder="'Дополнительный телефон'"
+                        v-model="userData.additionalPhone"
                         :isDisabled="isDisabled"
                     )
 
-                .sign-up__form-group
+                .sign-up__form-group.half
                     input.form-input(
                         type="text"
                         placeholder="Область/регион"
@@ -83,7 +85,7 @@
                         v-model="userData.name"
                     )
 
-                .sign-up__form-group
+                .sign-up__form-group.half
                     .sign-up__form-group-title Категория
                     label.sign-up__category.custom-radio(
                         v-for="(item, i) in categories"
@@ -99,7 +101,7 @@
                         span {{ item }}
                 
 
-                .sign-up__form-group
+                .sign-up__form-group.half
                     input.form-input(
                         type="text"
                         placeholder="Отчество"
@@ -108,14 +110,12 @@
                         v-model="userData.patronimic"
                     )                    
                     transition(name="fade", mode="out-in")
-                        input.form-input(
-                            type="text"
-                            placeholder="СНИЛС"
-                            :disabled="isDisabled"
-                            :key="'снилс'"
+                        snils-input(
                             v-if="userData.category == 'Физическое лицо'"
+                            ref="snilsInput"
                             v-model="userData.snils"
-                        )
+                        )                    
+ 
                         div(
                             :key="'юридическое лицо'"
                             v-else
@@ -160,17 +160,17 @@
 
 <script>
 import PhoneInput from '~/vue/common-components/PhoneInput.vue';
+import SnilsInput from '~/vue/common-components/SnilsInput.vue';
 import * as API from '~/js/api';
 
 export default {
-        components: {
+    components: {
         PhoneInput,
+        SnilsInput,
     },
 
     data() {
         return {
-
-            user: null,
 
             userData: {
                 phone: '',
@@ -249,6 +249,10 @@ export default {
             const fieldsToValidate = Object.keys(this.userData);
 
             fieldsToValidate.forEach(field => {
+
+                if ( field == 'password' && this.password.length == 0) return;
+                if ( field == 'passwordRepeat' && this.password.length == 0) return;
+
                 this.validate(field);
             });
 
@@ -318,6 +322,10 @@ export default {
             this.userData.organization = props.organization;
             this.userData.inn = props.inn;
             this.userData.ogrn = props.ogrn;
+
+            this.$refs.phoneInput.forceValue(this.userData.phone);
+            this.$refs.additionalPhoneInput.forceValue(this.userData.additionalPhone);
+            this.$refs.snilsInput.forceValue(this.userData.snils);
         }        
 
     },
@@ -336,10 +344,13 @@ export default {
             }
             return data;
         },
+
+        user() {
+            return this.$store.state.user;
+        }
     },
 
     mounted() {
-        this.user = this.$store.state.user;
         this.setFields();
     }
 }

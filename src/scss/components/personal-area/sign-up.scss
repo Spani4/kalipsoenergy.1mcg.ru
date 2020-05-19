@@ -39,10 +39,13 @@
         &-group:nth-child(4),
         &-group:nth-child(5),
         &-group:nth-child(6) {
-            width: 50%;
             order: 1;
-            @include screen(767) {
-                width: 100%;
+
+            &.half {
+                width: 50%;
+                @include screen(767) {
+                    width: 100%;
+                }
             }
         }
         &-group:nth-child(5) {
@@ -69,13 +72,6 @@
 
         &-row {
             @include flex(row,fs,fs);
-            @include screen(767) {
-                flex-direction: column;
-            }
-        }
-
-        &-row-wide {
-            @include flex(row,sb,fs);
             @include screen(767) {
                 flex-direction: column;
             }
@@ -114,5 +110,10 @@
     .button {
         margin-top: 20px;
         margin-bottom: 20px;
+
+        @include screen(480) {
+            display: block;
+            margin: 20px auto;
+        }
     }
 }

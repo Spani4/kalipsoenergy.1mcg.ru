@@ -35,14 +35,14 @@ export default {
         },
         placeholder: {
             type: String,
-            default: "Логин (Мобильный телефон)"
+            default: "СНИЛС"
         },
     },
 
     data() {
         return {
             mask: {
-                mask: '+{7} (000) 000-00-00',
+                mask: '000-000-000 00',
             },
             value: '',
         }
