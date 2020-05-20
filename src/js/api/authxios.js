@@ -32,7 +32,8 @@ function refreshToken(key = 'jwt') {
             localStorage.setItem(key, JSON.stringify(response.data));
             return;
         }).catch(error => {
-            if ( error.response.status == 409 ) localStorage.removeItem(key);
+            // if ( error.response.status == 409 ) localStorage.removeItem(key);
+            localStorage.removeItem(key);
             throw AuthError('Failed to refresh token');
         })
 }

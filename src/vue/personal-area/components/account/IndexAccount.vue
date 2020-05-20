@@ -28,6 +28,7 @@ import DownloadForms from './DownloadForms.vue';
 import ConnectionApplication from './ConnectionApplication.vue';
 import SendIndications from './SendIndications.vue';
 import Payment from './Payment.vue';
+import Feedback from './Feedback.vue';
 import ChangeUserData from './ChangeUserData.vue';
 
 export default {
@@ -40,6 +41,7 @@ export default {
         ConnectionApplication,
         SendIndications,
         Payment,
+        Feedback,
         ChangeUserData
     },
 
@@ -49,7 +51,7 @@ export default {
             modes: ['edit-data', 'account'],
             activeComponent: '',
             contentComponents: ['my-data', 'download-forms', 'connection-application',
-                'send-indications', 'payment', 'change-user-data'],
+                'send-indications', 'payment', 'feedback', 'change-user-data'],
             
         }
     },

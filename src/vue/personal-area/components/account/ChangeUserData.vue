@@ -6,7 +6,7 @@
             .sign-up__title изменение данных
             
             form.sign-up__form(
-                @submit.prevent="hasCode ? signUp() : sendPhone()"
+                @submit.prevent="sendData"
                 )
                 .sign-up__form-group.half
                     div.sign-up__input-wrapper
@@ -199,7 +199,6 @@ export default {
                 'Индивидуальный предприниматель'
             ],
 
-            // hasCode: false,
             pending: false,
 
             errors: {
@@ -237,69 +236,40 @@ export default {
                 
                 case 'organization': if ( this.userData[field].length > 100) this.userData[field] = this.userData[field].trim().substr(0, 100);
                     break;
-
-                case 'agree': if ( this.userData[field] !== true ) this.errors.agree = true;
-                    break;
                 
                 default: return;
             }
         },
 
         validateAll() {
+
             const fieldsToValidate = Object.keys(this.userData);
 
             fieldsToValidate.forEach(field => {
 
-                if ( field == 'password' && this.password.length == 0) return;
-                if ( field == 'passwordRepeat' && this.password.length == 0) return;
+                if ( this.userData[field] === undefined ) return;
+                if ( field == 'password' && this.userData.password.length == 0) return;
+                if ( field == 'passwordRepeat' && this.userData.password.length == 0) return;
 
                 this.validate(field);
             });
 
             const isValide = Object.values(this.errors).every(error => error === false)
-
             return isValide;
         },
 
-        // sendPhone() {
-
-        //     if ( this.pending ) return;
-
-        //     const isValide = this.validateAll();
-        //     if ( !isValide ) return;
-
-        //     this.pending = true;
-
-        //     const data = { phone: this.userData.phone };
-
-        //     API.auth.sendPhone(data)
-        //         .then(authJwt => {
-        //             this.hasCode = true;
-        //         }).catch(error => {
-        //             if (error.exception) {
-        //                 this.$noty('error', error.exception);
-
-        //                 if ( error.exception != 'Пользователь с таким номером телефона уже существует' )
-        //                     this.hasCode = true;
-        //             }
-        //         }).finally(() => {
-        //             this.pending = false;
-        //         });
-        // },
-
-        signUp() {
+        sendData() {
 
             if ( this.pending ) return
+
+            const isValide = this.validateAll();
+            if ( !isValide ) return;
+
             this.pending = true;
 
             const data = this.collectUserData;
 
-            API.auth.signUp(data)
-                .then(jwt => {
-                    this.$emit('success');
-                }).catch(error => {
-                    if (error.exception) this.$noty('error', error.exception);                  
-                });
+            this.$store.dispatch('updateUser', data);
 
             this.pending = false;
         },
@@ -332,13 +302,16 @@ export default {
 
     computed: {
         isDisabled() {
-            return this.pending || this.hasCode;
+            return this.pending;
         },
 
         collectUserData() {
+
             const data = {};
+
             for ( let key in this.userData ) {
-                if ( this.userData[key] === '' ) continue;
+                if ( this.userData[key] === '' && key == 'email') continue;
+                if ( this.userData[key] === '' && key == 'password') continue;
                 if ( key === 'passwordRepeat' ) continue;
                 data[key] = this.userData[key];
             }

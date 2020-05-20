@@ -32,6 +32,15 @@ export default new Vuex.Store({
                     if (error.exception) noty('error', error.exception);    
                 });
         },
+
+        updateUser({ commit }, data) {
+            API.updateUser(data)
+                .then(user => {
+                    commit('setUser', user);
+                }).catch(error => { 
+                    if (error.exception) noty('error', error.exception);    
+                });
+        },
     },
 
     mutations: {

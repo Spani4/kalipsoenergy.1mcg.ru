@@ -21,8 +21,8 @@
             :class="{ active: activeComponent == 'payment' }"
         ) оплатить
         .user-nav__item(
-            @click="goTo('change-user-data')"
-            :class="{ active: activeComponent == 'change-user-data' }"
+            @click="goTo('feedback')"
+            :class="{ active: activeComponent == 'feedback' }"
         ) направить обращение
         .user-nav__item(@click="logout") выход
 </template>

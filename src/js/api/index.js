@@ -20,6 +20,19 @@ export function fetchUser() {
         })       
 }
 
+export function updateUser(data) {
+
+    const url = links.user;
+
+    return authxios.post(url, data)
+        .then(response => response.data)
+        .catch(error => {
+            throw handleError(error, 'Failed to update user');
+        })    
+}
+
+
+
 
 
 
