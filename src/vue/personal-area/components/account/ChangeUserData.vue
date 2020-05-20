@@ -211,7 +211,7 @@ export default {
 
     methods: {
 
-        validate(field) {
+        validateField(field) {
             switch (field) {
                 case 'phone': if ( this.userData.phone.length != 11 ) this.errors.phone = 'Введите номер телефона полностью';
                     break;
@@ -241,9 +241,9 @@ export default {
             }
         },
 
-        validateAll() {
+        validateData(data) {
 
-            const fieldsToValidate = Object.keys(this.userData);
+            const fieldsToValidate = data ? Object.keys(data) : Object.keys(this.userData);
 
             fieldsToValidate.forEach(field => {
 
@@ -251,7 +251,7 @@ export default {
                 if ( field == 'password' && this.userData.password.length == 0) return;
                 if ( field == 'passwordRepeat' && this.userData.password.length == 0) return;
 
-                this.validate(field);
+                this.validateField(field);
             });
 
             const isValide = Object.values(this.errors).every(error => error === false)
@@ -262,12 +262,13 @@ export default {
 
             if ( this.pending ) return
 
-            const isValide = this.validateAll();
+            const data = this.collectUserData;
+            const isValide = this.validateData(data);
+
             if ( !isValide ) return;
 
             this.pending = true;
 
-            const data = this.collectUserData;
 
             this.$store.dispatch('updateUser', data);
 
@@ -281,17 +282,10 @@ export default {
             this.userData.phone = user.phone;
             this.userData.email = user.email;
             this.userData.category = user.category;
-            this.userData.additionalPhone = props.additionalPhone;
-            this.userData.region = props.region;
-            this.userData.city = props.city;
-            this.userData.address = props.address;
-            this.userData.surname = props.surname;
-            this.userData.name = props.name;
-            this.userData.patronimic = props.patronimic;
-            this.userData.snils = props.snils;
-            this.userData.organization = props.organization;
-            this.userData.inn = props.inn;
-            this.userData.ogrn = props.ogrn;
+
+            for ( let key in props ) {
+                this.userData[key] = props[key];
+            }
 
             this.$refs.phoneInput.forceValue(this.userData.phone);
             this.$refs.additionalPhoneInput.forceValue(this.userData.additionalPhone);
