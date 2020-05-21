@@ -22,7 +22,7 @@ module.exports = merge(common, {
         proxy: [
             {
                 context: ['/api', '/data'],
-                target: "https://kalipsoenergy.1mcg.ru",
+                target: "https://kalipsoenergy.ru",
                 changeOrigin: true,
                 withCredentials: true,
             },
