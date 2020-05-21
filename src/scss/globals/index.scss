@@ -14,8 +14,12 @@
 
 @import "../components/search-input";
 @import "../components/buttons";
+@import "../components/pager";
 @import "../components/wrapper";
 @import "../components/form-elems";
+@import "../components/form-elems";
+@import "../components/vue-transitions";
+
 
 * {
     font-family: $main-font-family;

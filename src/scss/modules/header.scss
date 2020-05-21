@@ -62,7 +62,7 @@
         &-link {
             @include transition(opacity);
             display: block;
-            padding-bottom: 10px;
+            // padding-bottom: 10px;
             white-space: nowrap;
 
             &:hover {

@@ -112,17 +112,9 @@
         }
     }
 
-    &__counter {
+    &__pager {
         position: absolute;
-        height: 40px;
-        right: 0;
+        right: 10px;
         bottom: 20px;
-        padding: 0 20px;
-        border-radius: 15px;
-        font-size: 14px;
-        line-height: 40px;
-        font-family: $sans-title;
-        color: $font-color-dark;
-        background-color: $bg-color-bright;
     }
 }
