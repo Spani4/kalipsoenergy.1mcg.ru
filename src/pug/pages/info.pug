@@ -1,0 +1,28 @@
+extends ../layout/layout.pug
+
+block content
+    main.info
+        .info__image.page-image(style=`background-image: url(${require('../../images/page-img.jpg')}`)
+        .info__wrapper.wrapper
+            h1.info__title.page-title информация
+
+            - var links = ['архив', '2015', '2016', '2017', '2018', '2019', '2020'];
+
+            .info__nav
+                each link, i in links
+                    .info__nav-item(class={active: i == 0})
+                        a.info__nav-link(href="#")= link
+
+            h2.info__subtitle ДОКУМЕНТЫ ЗА 2020 ГОД
+
+            .info__content
+                .info__item
+                    a.info__item-link(href="#") Загрузить определенный документ
+                .info__item
+                    a.info__item-link(href="#") Загрузить определенный документ
+                .info__item
+                    a.info__item-link(href="#") Загрузить определенный документ
+
+
+            
+

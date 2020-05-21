@@ -1,0 +1,51 @@
+@import "globals/";
+
+@import "components/custom-text";
+@import "components/page-title";
+@import "components/page-image";
+
+
+.info {
+
+    padding-bottom: 60px;
+    line-height: 150%;
+
+    &__nav {
+
+        margin: 0 -20px;
+
+        @include screen(480) {
+            @include flex(col);
+        }
+        
+        &-item {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 0 20px;
+
+            &.active {
+                color: $font-color-bright;
+            }
+        }
+        
+        &-link {
+            font-size: 14px;
+            line-height: 150%;
+            font-family: $sans-title;
+            text-transform: uppercase;
+        }
+    }
+
+    &__subtitle {
+        margin-bottom: 20px;
+        font-size: 14px;
+        font-family: $sans-title;
+        text-transform: uppercase;        
+        color: $font-color-bright;
+    }
+
+    &__item {
+        margin-bottom: 20px;
+    }
+
+}
