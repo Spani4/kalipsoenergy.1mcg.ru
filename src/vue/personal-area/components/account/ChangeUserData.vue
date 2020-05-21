@@ -145,15 +145,13 @@
                 .sign-up__form-group
                     button.button(
                         type="button"
-                        @click="$emit('cancel')"
+                        @click="$emit('return')"
                     ) отмена
                 .sign-up__form-group
                     button.button(
                         type="submit"
                         :class="{ pending }"
                     ) изменить данные
-
-
 
 </template>
 
@@ -189,8 +187,6 @@ export default {
                 inn: '',
                 ogrn: '',
                 category: 'Физическое лицо',
-                
-                // code: ''
             },
 
             categories: [
@@ -269,7 +265,6 @@ export default {
 
             this.pending = true;
 
-
             this.$store.dispatch('updateUser', data);
 
             this.pending = false;
@@ -307,6 +302,7 @@ export default {
                 if ( this.userData[key] === '' && key == 'email') continue;
                 if ( this.userData[key] === '' && key == 'password') continue;
                 if ( key === 'passwordRepeat' ) continue;
+                if ( key === 'phone' ) continue;
                 data[key] = this.userData[key];
             }
             return data;
@@ -314,6 +310,28 @@ export default {
 
         user() {
             return this.$store.state.user;
+        },
+
+        ogrn() {
+            return this.userData.ogrn;
+        },
+
+        inn() {
+            return this.userData.inn;
+        }
+    },
+
+    watch: {
+        user() {
+            this.$emit('return');
+        },
+        inn(newVal, oldVal) {
+            let inn = newVal.replace(/\D/g, '');
+            this.userData.inn = inn.length <= 12 ? inn : inn.substr(0,12);
+        },
+        ogrn(newVal, oldVal) {
+            let ogrn = newVal.replace(/\D/g, '');
+            this.userData.ogrn = ogrn.length <= 13 ? ogrn : ogrn.substr(0,13);
         }
     },
 

@@ -2,7 +2,7 @@
     .account
         change-user-data(
             v-if="mode == 'edit-data'"
-            @cancel="mode = 'account'"
+            @return="mode = 'account'"
         )
         template(v-else)
             .account__sidebar

@@ -344,8 +344,26 @@ export default {
                 data[key] = this.userData[key];
             }
             return data;
+        },
+
+        ogrn() {
+            return this.userData.ogrn;
+        },
+
+        inn() {
+            return this.userData.inn;
+        }        
+    },
+
+    watch: {
+        inn(newVal, oldVal) {
+            let inn = newVal.replace(/\D/g, '');
+            this.userData.inn = inn.length <= 12 ? inn : inn.substr(0,12);
+        },
+        ogrn(newVal, oldVal) {
+            let ogrn = newVal.replace(/\D/g, '');
+            this.userData.ogrn = ogrn.length <= 13 ? ogrn : ogrn.substr(0,13);
         }
-    }
-    
+    },
 }
 </script>

@@ -12,7 +12,7 @@
                 .user-data__item(v-if="userProps.inn") ИНН: {{ userProps.inn }}
                 .user-data__item(v-if="userProps.ogrn") ОГРН: {{ userProps.ogrn }}
             template(v-else)
-                .user-data__item(v-if="userProps.snils") СНИЛС: {{ userProps.snils }}
+                .user-data__item(v-if="userProps.snils") СНИЛС: {{ formattedSnils }}
             .user-data__item(v-if="userProps.region") {{ fullAddress }}            
         .button(
             @click="$emit('editUserData')"
@@ -22,9 +22,6 @@
 
 <script>
 export default {
-    // props: {
-    //     goTo: Function,
-    // },
 
     methods: {
         getFormattedPhone(phone) {
@@ -57,8 +54,13 @@ export default {
         },
         isOrganization() {
             return this.user.category !== "Физическое лицо"
-        }
+        },
+        formattedSnils() {
+            const s = this.userProps.snils;
+            if ( s.length < 11 ) return s
 
+            return `${s.substr(0,3)}-${s.substr(3,3)}-${s.substr(6,3)} ${s.substr(9,2)}`;
+        }
     }
 }
 </script>
