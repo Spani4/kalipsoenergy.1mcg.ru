@@ -5,7 +5,7 @@
         :class="{ error: isError, required: isRequired }"
         :disabled="isDisabled"
         v-imask="mask"
-        :model="value"
+        :value="value"
         @accept="$emit('input', $event.detail.unmaskedValue)"
         @complete="$emit('input', $event.detail.unmaskedValue)"
         @focus="$emit('focus')"
@@ -44,18 +44,18 @@ export default {
             mask: {
                 mask: '+{7} (000) 000-00-00',
             },
-            value: '',
         }
     },
 
-    methods: {
-        forceValue(value) {
-            this.value = value;
+    computed: {
+        value() {
+            return this.$attrs.value;
         }
     },
 
     directives: {
         imask: IMaskDirective,    
-    },    
+    },
+
 }
 </script>

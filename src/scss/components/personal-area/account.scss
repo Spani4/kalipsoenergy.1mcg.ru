@@ -13,8 +13,6 @@
         @include flex(col,sb);
         width: 380px;
         padding: 0 20px;
-
-        // background-color: grey;
     }
 
     &__content {
@@ -22,6 +20,10 @@
         width: auto;
         padding: 0 20px;
 
-        background-color: orange;
+        outline: 1px dotted grey;
+
+        &-inner {
+            height: 100%;
+        }
     }
 }

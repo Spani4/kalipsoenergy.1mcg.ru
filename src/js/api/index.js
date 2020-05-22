@@ -31,6 +31,17 @@ export function updateUser(data) {
         })    
 }
 
+export function sendFeedback(data) {
+
+    const url = links.feedback;
+
+    return axios.post(url, data)
+        .then(response => response.data)
+        .catch(error => {
+            throw handleError(error, 'Failed to send feedback');
+        })    
+}
+
 
 
 

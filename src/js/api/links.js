@@ -13,6 +13,7 @@ export default {
 	forgotPasswordResetPassword: `${origin}/api/auth/password/forgot-password/reset-password`,
 
 	user: `${origin}/api/user`,
+	feedback: `${origin}/api/feedback/questions`,
 	
 	// cart: `${document.location.origin}/api/cart`,
 	// cartItems: `${document.location.origin}/api/cart/items`,

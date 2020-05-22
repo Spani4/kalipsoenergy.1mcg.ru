@@ -13,5 +13,19 @@
         & > * {  margin-bottom: 20px; }
     }
 
+    &__errors {
+        color: $font-color-error;
+
+        & > * {
+            margin-bottom: 10px;
+            text-align: right;
+
+            @include screen(767) {
+                text-align: left;
+            }
+        }
+    }
+
     .button { width: 160px; }
+
 }

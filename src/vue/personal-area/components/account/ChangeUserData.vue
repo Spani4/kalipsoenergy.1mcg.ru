@@ -281,11 +281,7 @@ export default {
             for ( let key in props ) {
                 this.userData[key] = props[key];
             }
-
-            this.$refs.phoneInput.forceValue(this.userData.phone);
-            this.$refs.additionalPhoneInput.forceValue(this.userData.additionalPhone);
-            this.$refs.snilsInput.forceValue(this.userData.snils);
-        }        
+        },
 
     },
 

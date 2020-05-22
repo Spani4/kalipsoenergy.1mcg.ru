@@ -45,7 +45,7 @@ export default class PersonalArea {
 
         this._initBtns();
 
-        if ( process.env.NODE_ENV == 'development' ) this._vm.toggle();
+        // if ( process.env.NODE_ENV == 'development' ) this._vm.toggle();
     }
 
     _initBtns() {

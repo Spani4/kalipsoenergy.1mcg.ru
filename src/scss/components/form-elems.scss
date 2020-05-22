@@ -42,6 +42,12 @@
     @extend %form-elem;
     min-height: 120px;
     resize: none;
+    
+    &.error {
+        border-color: $font-color-error;
+        background-color: $bg-color-error;
+        box-shadow: inset 0 0 5px rgba($font-color-error, .8);
+    }
 }
 
 .custom-checkbox {

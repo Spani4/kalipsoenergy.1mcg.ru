@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Layout from './Layout.vue';
-
+import store from '~/store';
 
 export default class {
 
@@ -9,6 +9,7 @@ export default class {
         new Vue({
             name: 'Feedback',
             el,
+            store,
             render: h => h(Layout),
         });
     }

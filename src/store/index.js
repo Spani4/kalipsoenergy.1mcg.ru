@@ -41,6 +41,13 @@ export default new Vuex.Store({
                     if (error.exception) noty('error', error.exception);    
                 });
         },
+
+        sendFeedback(context, data) {
+
+            return API.sendFeedback(data)
+                .then(data => data)
+                .catch(error => { throw error });
+        },
     },
 
     mutations: {

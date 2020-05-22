@@ -63,7 +63,8 @@ export default {
     },
 
     created() {
-        this.activeComponent = 'my-data';
+        // this.activeComponent = 'my-data';
+        this.activeComponent = 'download-forms';
         this.mode = 'account';
     }
     
