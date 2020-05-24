@@ -10,8 +10,8 @@
 @import "modules/nav";
 @import "modules/footer";
 @import "modules/footer-nav";
-@import "modules/personal-area";
 
+@import "../components/page-title";
 @import "../components/search-input";
 @import "../components/buttons";
 @import "../components/pager";
@@ -19,6 +19,15 @@
 @import "../components/form-elems";
 @import "../components/form-elems";
 @import "../components/vue-transitions";
+
+@import "modules/personal-area";
+@import "../components/personal-area/sign-in";
+@import "../components/personal-area/sign-up";
+@import "../components/personal-area/account";
+@import "../components/personal-area/user-data";
+@import "../components/personal-area/user-nav";
+@import "../components/personal-area/download-docs";
+
 
 
 * {

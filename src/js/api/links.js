@@ -14,6 +14,11 @@ export default {
 
 	user: `${origin}/api/user`,
 	feedback: `${origin}/api/feedback/questions`,
+
+	docs: {
+		individual: `${origin}/api/files/folders/d99553598fd246cd8e33a83e413bb9c1/files`,
+		business: `${origin}/api/files/folders/fc1dd5cf6dde020c4adb768c147504bb/files`,
+	}
 	
 	// cart: `${document.location.origin}/api/cart`,
 	// cartItems: `${document.location.origin}/api/cart/items`,

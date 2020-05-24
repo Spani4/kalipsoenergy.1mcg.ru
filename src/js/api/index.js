@@ -2,12 +2,16 @@ import axios from 'axios';
 import links from './links';
 import handleError from './error';
 import authxios from './authxios';
+
 import * as passwordRecovery from './passwordRecovery';
 import * as authApi from './auth';
+import * as docsApi from './fetchDocs';
 
 export const auth = authApi;
 
 export const recovery = passwordRecovery;
+
+export const fetchDocs = docsApi;
 
 export function fetchUser() {
 
@@ -41,6 +45,8 @@ export function sendFeedback(data) {
             throw handleError(error, 'Failed to send feedback');
         })    
 }
+
+
 
 
 

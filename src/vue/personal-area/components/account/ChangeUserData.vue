@@ -157,9 +157,11 @@
 
 
 <script>
+import { mapState } from 'vuex';
 import PhoneInput from '~/vue/common-components/PhoneInput.vue';
 import SnilsInput from '~/vue/common-components/SnilsInput.vue';
 import * as API from '~/js/api';
+
 
 export default {
     components: {
@@ -286,6 +288,8 @@ export default {
     },
 
     computed: {
+        ...mapState(['user']),
+
         isDisabled() {
             return this.pending;
         },
@@ -302,10 +306,6 @@ export default {
                 data[key] = this.userData[key];
             }
             return data;
-        },
-
-        user() {
-            return this.$store.state.user;
         },
 
         ogrn() {

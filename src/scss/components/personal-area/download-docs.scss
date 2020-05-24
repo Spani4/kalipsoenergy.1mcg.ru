@@ -1,0 +1,58 @@
+.download-docs {
+
+    position: relative;
+
+    .page-title {
+        margin-bottom: 40px;
+    }
+
+    &__tabs {
+        
+        margin-bottom: 40px;
+
+        &-item {
+            @include transition(all);
+
+            position: relative;
+            display: inline-block;
+            width: 200px;
+            height: 50px;
+            border: 1px solid $grey-light;
+            font-size: 14px;
+            line-height: 50px;
+            text-align: center;
+            font-family: $sans-title;
+            text-transform: uppercase;
+            color: $font-color-dark;
+            cursor: pointer;
+            user-select: none;
+            
+            &.active {
+                background-color: $bg-color-bright;
+                border-color: $bg-color-bright;
+            }
+        }
+    }
+
+    &__item {
+        margin-bottom: 20px;
+        
+        &-name {
+            margin-bottom: 10px;
+        }
+
+        &-link {
+            color:  $font-color-link;
+        }
+    }
+
+    &__pager {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    &__docs {
+        position: relative;
+    }
+}
